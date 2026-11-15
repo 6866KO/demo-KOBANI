@@ -2,355 +2,486 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>6866 | Hazel Edition</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6866 | Accessories</title>
 
 <style>
+
 *{box-sizing:border-box}
 
 body{
-margin:0;
-background:radial-gradient(ellipse at top,#93805c,#454633,#191d17);
-color:#f8e8ca;
-font-family:Arial,sans-serif;
-text-align:center;
-min-height:100vh;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:radial-gradient(ellipse at top,#817052,#353c2e,#161c17);
+ color:#f8e5bd;
+ min-height:100vh;
 }
 
 header{
-padding:35px;
-border-bottom:1px solid #bba16b;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:25px 5%;
+ border-bottom:1px solid #a48d61;
 }
 
 .logo{
-font:65px Georgia;
-letter-spacing:14px;
+ font:45px Georgia;
+ letter-spacing:8px;
 }
 
-.subtitle{
-letter-spacing:6px;
-font-size:12px;
-margin:12px;
+select{
+ padding:12px;
+ background:#30382b;
+ color:#ffe1a1;
+ border:1px solid #ad9364;
+ border-radius:12px;
+}
+
+.hero{
+ text-align:center;
+ padding:45px 20px;
 }
 
 h1{
-font:42px Georgia;
-margin-top:35px;
+ font:48px Georgia;
+ margin:10px;
 }
 
-select,button{
-border:1px solid #d6b77d;
-border-radius:25px;
-padding:13px 22px;
-background:linear-gradient(120deg,#ffe6b4,#bd965c);
-color:#30291d;
-cursor:pointer;
-font-weight:bold;
+.hero p{
+ color:#d8c8a7;
+ letter-spacing:3px;
 }
-
-select{margin:15px}
 
 .grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-max-width:1150px;
-margin:30px auto;
-padding:20px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:20px;
+ max-width:1400px;
+ margin:auto;
+ padding:20px;
 }
 
 .card{
-border:1px solid #bba382;
-border-radius:24px;
-padding:25px 12px;
-background:linear-gradient(145deg,#ffffff12,#00000030);
-overflow:hidden;
+ text-align:center;
+ border:1px solid #8f805d;
+ background:linear-gradient(145deg,#ffffff12,#00000035);
+ border-radius:22px;
+ padding:20px;
+ overflow:hidden;
+ transition:.3s;
+}
+
+.card:hover{
+ transform:translateY(-5px);
+ border-color:#ffe2a2;
+ box-shadow:0 10px 35px #0005;
+}
+
+.stage{
+ height:200px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:radial-gradient(ellipse,#ffffff18,transparent 70%);
+ perspective:700px;
 }
 
 .gift{
-position:relative;
-width:140px;
-height:110px;
-margin:40px auto;
-border-radius:8px;
-background:linear-gradient(125deg,var(--c),#24251e);
-box-shadow:15px 20px 28px #0007;
+ width:135px;
+ height:115px;
+ position:relative;
+ border-radius:7px;
+ background:linear-gradient(135deg,var(--c),#171b16);
+ box-shadow:18px 20px 25px #0008;
+ transform:rotate(-5deg) rotateY(-20deg);
 }
 
-.gift:before{
-content:"";
-position:absolute;
-top:-15px;
-left:-7px;
-width:154px;
-height:30px;
-background:linear-gradient(120deg,var(--c),#454338);
-border:1px solid #d8bf8c;
-border-radius:5px;
+.lid{
+ position:absolute;
+ top:-12px;
+ left:-8px;
+ width:151px;
+ height:32px;
+ border-radius:5px;
+ background:linear-gradient(135deg,var(--c),#454238);
+ border:1px solid #bca577;
 }
 
-.gift:after{
-content:"";
-position:absolute;
-left:58px;
-top:-15px;
-width:24px;
-height:125px;
-background:linear-gradient(90deg,#9b7139,#ffe2a0,#ae8143);
+.ribbon{
+ position:absolute;
+ left:54px;
+ top:-12px;
+ height:127px;
+ width:27px;
+ background:linear-gradient(90deg,#91652d,#ffe6a8,#aa7938);
 }
 
-h2{font:25px Georgia}
+.bow{
+ position:absolute;
+ top:-38px;
+ left:37px;
+ font-size:38px;
+}
+
+.number{
+ font:28px Georgia;
+ position:absolute;
+ top:50px;
+ left:10px;
+ color:#f8e2ae;
+}
+
+h2{
+ font:24px Georgia;
+ margin:10px 0;
+}
+
+.small{
+ color:#c4b99f;
+ font-size:13px;
+}
+
+button{
+ border:0;
+ border-radius:25px;
+ background:linear-gradient(120deg,#ffe6ad,#b48b4e);
+ color:#29271d;
+ font-weight:bold;
+ padding:13px 20px;
+ cursor:pointer;
+}
+
+.card button{
+ width:100%;
+ margin-top:15px;
+}
 
 dialog{
-background:#30382b;
-color:#f8e8ca;
-border:1px solid #c6a56e;
-border-radius:24px;
-width:min(850px,94vw);
-padding:24px;
+ width:min(1100px,95vw);
+ max-height:90vh;
+ overflow:auto;
+ background:#252e24;
+ color:#f8e5bd;
+ border:1px solid #b69a65;
+ border-radius:24px;
+ padding:25px;
 }
 
 dialog::backdrop{
-background:#000b;
+ background:#000c;
 }
 
-.rail{
-display:flex;
-gap:15px;
-overflow:auto;
-padding:16px;
-scroll-snap-type:x mandatory;
+.modalhead{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
 }
 
-.item{
-flex:0 0 210px;
-scroll-snap-align:start;
-background:#f5eadb;
-color:#312b20;
-border-radius:16px;
-overflow:hidden;
-padding-bottom:15px;
+.products{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:12px;
+ margin-top:25px;
 }
 
-.item img{
-width:100%;
-height:180px;
-object-fit:cover;
+.product{
+ border:1px solid #746a50;
+ background:#374034;
+ border-radius:14px;
+ overflow:hidden;
+ text-align:center;
 }
 
-.item b{
-display:block;
-padding:10px;
+.photo{
+ height:140px;
+ position:relative;
+ background:#e6ddcb;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:55px;
+}
+
+.photo img{
+ position:absolute;
+ inset:0;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+.name{
+ padding:12px 5px 5px;
+ font-size:13px;
+}
+
+.value{
+ color:#f5d28b;
+ padding:10px;
+ font-weight:bold;
 }
 
 footer{
-padding:35px;
-color:#d4c3a3;
-font-size:13px;
+ text-align:center;
+ padding:40px 20px;
+ color:#bfb49d;
+ font-size:12px;
 }
 
-@media(max-width:750px){
-.grid{grid-template-columns:repeat(2,1fr)}
-h1{font-size:32px}
-.gift{transform:scale(.8);margin:25px auto}
+@media(max-width:900px){
+ .grid{grid-template-columns:repeat(3,1fr)}
+ .products{grid-template-columns:repeat(3,1fr)}
 }
 
-@media(max-width:350px){
-.grid{grid-template-columns:1fr}
+@media(max-width:600px){
+ .grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
+ .card{padding:12px}
+ .stage{height:160px}
+ .gift{scale:.8}
+ .products{grid-template-columns:repeat(2,1fr)}
+ h1{font-size:35px}
+ h2{font-size:19px}
+ .photo{height:120px}
+ .logo{font-size:32px}
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">6866</div>
-<div class="subtitle">HAZEL EDITION</div>
 
-<select id="lang">
+<div class="logo">6866</div>
+
+<select id="language">
 <option value="en">English</option>
 <option value="ar">العربية</option>
 <option value="ku">Kurmancî</option>
 <option value="no">Norsk</option>
 </select>
+
 </header>
 
-<h1 id="heading">The Hazel Collection</h1>
-<p id="sub">Explore four signature gift collections.</p>
+<section class="hero">
+<p>HAZEL EDITION</p>
+<h1 id="heading">Accessories</h1>
+<p id="description">20 SIGNATURE COLLECTIONS</p>
+</section>
 
-<main class="grid" id="grid"></main>
+<main class="grid" id="boxes"></main>
 
 <dialog id="modal">
-<h2 id="title"></h2>
-<div class="rail" id="rail"></div>
-<button id="next">Next products</button>
+
+<div class="modalhead">
+<h2 id="boxTitle"></h2>
 <button id="close">Close</button>
+</div>
+
+<p id="info">20 products · Free preview</p>
+
+<div class="products" id="products"></div>
+
 </dialog>
 
-<footer id="foot">
-Free design preview · No purchases, wagering or prizes
+<footer>
+6866 — HAZEL EDITION<br><br>
+Free catalog preview · Illustrative values<br>
+No payments, wagering or real prizes.
 </footer>
 
 <script>
 
-const groups=[
-[
-"Watch Box","#7c8b57",
-[
-["Classic Watch","photo-1524805444758-089113d48a6d"],
-["Modern Watch","photo-1523275335684-37898b6baf30"],
-["Sport Watch","photo-1547996160-81dfa63595aa"]
-]
-],
-[
-"Jewelry Box","#a77b86",
-[
-["Diamond Ring","photo-1605100804763-247f67b3557e"],
-["Jewelry","photo-1535632066927-ab7c9ab60908"]
-]
-],
-[
-"Phone Box","#77736b",
-[
-["Smartphone","photo-1511707171634-5f897ff02aa9"],
-["Mobile Phone","photo-1510557880182-3d4d3cba35a5"]
-]
-],
-[
-"TV Box","#427d70",
-[
-["Television","photo-1593359677879-a4bb92f829d1"],
-["Home Display","photo-1461151304267-38535e780c79"]
-]
-]
+const boxes=[
+
+["Hazel Gold","#8b945e"],
+["Rose Diamond","#bd8597"],
+["Midnight","#41434c"],
+["Emerald","#367b60"],
+["Royal Blue","#385d91"],
+["Champagne","#c4a576"],
+["Ruby","#973f4d"],
+["Silver Moon","#a0a7ae"],
+["Black Pearl","#303039"],
+["Golden Sand","#b39559"],
+["Olive Queen","#67794a"],
+["Pink Crystal","#c892ad"],
+["Ocean","#337c91"],
+["Purple Velvet","#79528c"],
+["White Pearl","#d2c8b5"],
+["Copper","#b36f48"],
+["Forest","#395d43"],
+["Cherry","#963d57"],
+["Royal Gold","#ba9140"],
+["Hazel Signature","#92825d"]
+
+];
+
+const products=[
+
+["Gold Watch",50,"⌚","1524805444758-089113d48a6d"],
+["Crystal Ring",50,"💍","1605100804763-247f67b3557e"],
+["Bracelet",4,"📿","1535632066927-ab7c9ab60908"],
+["Sunglasses",3,"🕶️","1511499767150-a48a237f0083"],
+["Classic Watch",4,"⌚","1523275335684-37898b6baf30"],
+["Earphones",3,"🎧","1505740420928-5e560c06d30e"],
+["Keychain",1,"🔑",""],
+["Phone Case",3,"📱",""],
+["Necklace",4,"📿",""],
+["Pocket Mirror",2,"🪞",""],
+["Earrings",3,"💎",""],
+["Hair Clip",1,"🎀",""],
+["Wallet",4,"👛",""],
+["USB Cable",2,"🔌",""],
+["Phone Stand",2,"📱",""],
+["Fashion Ring",3,"💍",""],
+["Mini Speaker",4,"🔊",""],
+["LED Light",2,"🔦",""],
+["USB Stick",3,"💾",""],
+["Silk Scarf",4,"🧣",""]
+
 ];
 
 const translations={
+
 en:[
-"The Hazel Collection",
-"Explore four signature gift collections.",
-"Preview collection",
-"Close",
-"Next products",
-"Free design preview · No purchases, wagering or prizes",
-["Watch Box","Jewelry Box","Phone Box","TV Box"]
+"Accessories",
+"20 SIGNATURE COLLECTIONS",
+"Preview contents",
+"20 products · Free preview",
+"Close"
 ],
 
 ar:[
-"مجموعة هازل",
-"استكشف أربع مجموعات هدايا",
-"معاينة المجموعة",
-"إغلاق",
-"المنتجات التالية",
-"معاينة مجانية بدون دفع أو مراهنات أو جوائز",
-["صندوق الساعات","صندوق المجوهرات","صندوق الهواتف","صندوق الشاشات"]
+"الإكسسوارات",
+"٢٠ مجموعة مميزة",
+"معاينة المحتويات",
+"٢٠ منتج · معاينة مجانية",
+"إغلاق"
 ],
 
 ku:[
-"Koleksiyona Hazel",
-"Çar koleksiyonên diyariyan bibîne",
-"Koleksiyonê bibîne",
-"Bigire",
-"Berhemên din",
-"Tenê pêşdîtina belaş",
-["Saet","Zêr","Telefon","Televîzyon"]
+"Aksesûar",
+"20 koleksiyon",
+"Berheman bibîne",
+"20 berhem · Pêşdîtina belaş",
+"Bigire"
 ],
 
 no:[
-"Hazel-kolleksjonen",
-"Utforsk fire gavekolleksjoner",
-"Vis kolleksjon",
-"Lukk",
-"Neste produkter",
-"Gratis forhåndsvisning · Ingen kjøp, spill eller premier",
-["Klokkeboks","Smykkeboks","Mobilboks","TV-boks"]
+"Tilbehør",
+"20 SIGNATURKOLLEKSJONER",
+"Vis innhold",
+"20 produkter · Gratis visning",
+"Lukk"
 ]
+
 };
 
 const $=id=>document.getElementById(id);
 
 function render(){
 
-let t=translations[$("lang").value];
+const t=translations[$("language").value];
 
 $("heading").textContent=t[0];
-$("sub").textContent=t[1];
-$("close").textContent=t[3];
-$("next").textContent=t[4];
-$("foot").textContent=t[5];
+$("description").textContent=t[1];
+$("info").textContent=t[3];
+$("close").textContent=t[4];
 
-$("grid").replaceChildren();
+$("boxes").replaceChildren();
 
-groups.forEach((g,i)=>{
+boxes.forEach((box,i)=>{
 
-let card=document.createElement("article");
+const card=document.createElement("article");
+
 card.className="card";
 
-card.innerHTML=
-'<div class="gift" style="--c:'+g[1]+'"></div>'+
-'<h2>'+t[6][i]+'</h2>'+
-'<button>'+t[2]+'</button>';
+card.innerHTML=`
+<div class="stage">
+ <div class="gift" style="--c:${box[1]}">
+  <div class="lid"></div>
+  <div class="ribbon"></div>
+  <div class="bow">🎀</div>
+  <div class="number">${String(i+1).padStart(2,"0")}</div>
+ </div>
+</div>
+<h2>${box[0]}</h2>
+<div class="small">6866 COLLECTION</div>
+<button>${t[2]}</button>
+`;
 
-card.querySelector("button").onclick=()=>openBox(i);
+card.querySelector("button").onclick=()=>{
+ showCollection(i);
+};
 
-$("grid").append(card);
+$("boxes").append(card);
 
 });
 
 }
 
-function openBox(i){
+function showCollection(index){
 
-$("title").textContent=
-translations[$("lang").value][6][i];
+$("boxTitle").textContent=boxes[index][0];
 
-$("rail").replaceChildren();
+$("products").replaceChildren();
 
-groups[i][2].forEach(([name,photo])=>{
+products.forEach(p=>{
 
-let item=document.createElement("div");
-item.className="item";
+const item=document.createElement("article");
 
-let img=document.createElement("img");
+item.className="product";
 
-img.src="https://images.unsplash.com/"+photo+
-"?auto=format&fit=crop&w=450&q=80";
+const photo=document.createElement("div");
 
-img.alt=name;
+photo.className="photo";
 
-img.onerror=()=>{
-img.style.display="none";
-};
+photo.textContent=p[2];
 
-let label=document.createElement("b");
-label.textContent=name;
+if(p[3]){
 
-item.append(img,label);
+const img=document.createElement("img");
 
-$("rail").append(item);
+img.src="https://images.unsplash.com/photo-"+p[3]+"?auto=format&fit=crop&w=400&q=80";
+
+img.alt=p[0];
+
+img.onerror=()=>img.remove();
+
+photo.append(img);
+
+}
+
+const name=document.createElement("div");
+
+name.className="name";
+
+name.textContent=p[0];
+
+const value=document.createElement("div");
+
+value.className="value";
+
+value.textContent="$"+p[1].toFixed(2);
+
+item.append(photo,name,value);
+
+$("products").append(item);
 
 });
 
 $("modal").showModal();
-$("rail").scrollLeft=0;
+
+$("modal").scrollTop=0;
 
 }
 
 $("close").onclick=()=>$("modal").close();
 
-$("next").onclick=()=>{
-
-let r=$("rail");
-
-r.scrollTo({
-left:r.scrollLeft+r.clientWidth>=r.scrollWidth-5
-?0:r.scrollLeft+225,
-behavior:"smooth"
-});
-
-};
-
-$("lang").onchange=render;
+$("language").onchange=render;
 
 render();
 
