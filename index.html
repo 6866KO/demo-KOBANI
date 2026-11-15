@@ -1,465 +1,1203 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="
-<title>KOBANI | Global Mega Shop</title>
-<meta name="description" content="Explore KOBANI Global Shop: fashion, electronics, watches, home essentials, beauty and more. Demo product catalog.">
+<!-- ضع سطر Google Site Verification الأصلي هنا -->
 
-<!-- IMPORTANT: PASTE YOUR EXISTING GOOGLE VERIFICATION META TAG BELOW -->
-<!-- Keep the exact tag from your old index.html. Do not invent a new code. -->
+<title>KOBANI | Global Mega Shop</title>
+<meta name="description" content="KOBANI Global Shop - Fashion, electronics, home, tools, camping and more.">
 
 <style>
-:root{--green:#183629;--gold:#e8c47a;--purple:#481253}
+:root{
+  --green:#153b32;
+  --dark:#102820;
+  --gold:#e8bc69;
+  --bg:#f6f5f0;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f5f0;color:#21352a}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#24362e;
+  font-family:Arial,sans-serif;
+}
 button,input,select{font:inherit}
 button{cursor:pointer}
-header{position:sticky;top:0;z-index:10;background:linear-gradient(110deg,#11251c,#31543e);color:white;padding:15px 4%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;box-shadow:0 4px 15px #0003}
-.logo{font:bold 30px Georgia;color:var(--gold);letter-spacing:3px}
-.header-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.btn{border:0;border-radius:25px;padding:11px 17px;background:var(--gold);color:#35260e;font-weight:bold}
-.btn:hover{filter:brightness(1.07)}
-select,input{border:1px solid #ddd;border-radius:12px;padding:11px;background:white;color:#222}
-.hero{padding:55px 15px;text-align:center;color:white;background:radial-gradient(circle at top,#817044,#254c38 65%,#13261d)}
-.hero h1{font:bold clamp(30px,5vw,58px) Georgia;color:#f5d88f;margin:10px 0}
-.hero p{font-size:17px}
-main{max-width:1350px;margin:auto;padding:25px 15px}
-h2{font:bold 28px Georgia;color:#284532}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
-.toolbar input{flex:1;min-width:200px}
-.categories{display:flex;gap:9px;overflow-x:auto;padding:8px 0 18px}
-.cat{border:1px solid #d6c397;background:white;border-radius:20px;padding:10px 16px;white-space:nowrap}
-.cat.active{background:#244a35;color:white;border-color:#244a35}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:16px}
-.product{background:white;border:1px solid #eee;border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #0001}
-.product img{width:100%;height:180px;object-fit:cover;background:#eaeae5}
-.product-body{padding:14px}
-.product h3{font-size:15px;margin:0 0 8px;min-height:36px}
-.price{font-size:21px;font-weight:bold;color:#a77b2c}
-.details{font-size:12px;color:#56635b;line-height:1.65;margin-top:8px;min-height:80px}
-.product button{width:100%;margin-top:10px}
-.demo-label{font-size:11px;color:#8c6b2e}
-.banner{margin:30px 0;padding:32px 18px;text-align:center;border-radius:24px;background:linear-gradient(120deg,#32103f,#692270,#280c37);color:white}
-.banner h2{color:#ffe3a4}
-.referral{background:#e8eee5;border:2px solid #d1ae65;text-align:center;padding:30px;border-radius:22px;margin:30px 0}
-.progress{max-width:450px;margin:15px auto;height:15px;background:#cbd7c8;border-radius:20px;overflow:hidden}
-.progress div{height:100%;width:0;background:#bb9749}
-footer{background:#13281d;color:#e4e6de;text-align:center;padding:30px}
-.modal{display:none;position:fixed;inset:0;background:#000b;z-index:30;align-items:center;justify-content:center;padding:12px}
-.modal.show{display:flex}
-.panel{position:relative;background:white;color:#23362a;border-radius:22px;padding:24px;width:100%;max-width:540px;max-height:94vh;overflow:auto}
-.close{position:absolute;right:12px;top:8px;border:0;background:none;font-size:30px}
-.cartrow{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #ddd;padding:12px 0}
-.cartrow button{border:0;border-radius:7px;padding:6px 10px;background:#eee}
-.checkout input{display:block;width:100%;margin:10px 0}
-.wheelpanel{max-width:620px;text-align:center;background:radial-gradient(circle,#722c79,#2c0b3c);color:white;border:3px solid #e2b35e}
-.wheelpanel h2{color:#ffdf99}
-.wheelwrap{max-width:350px;margin:20px auto;position:relative}
-#wheel{display:block;width:100%;border:9px solid #e8bd68;border-radius:50%;box-shadow:0 0 28px #ffc86b;transition:transform 5s cubic-bezier(.12,.7,.12,1)}
-.pointer{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:35px;z-index:2;color:#ffe4a0}
-#result{color:#ffe5a5;font-size:20px;font-weight:bold;min-height:25px}
-.small{font-size:12px;opacity:.75}
-@media(max-width:520px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.product img{height:125px}.product-body{padding:9px}.product h3{font-size:13px}.details{font-size:11px}.logo{font-size:23px}}
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:var(--dark);
+  color:white;
+  box-shadow:0 4px 18px #0003;
+}
+.top{
+  max-width:1450px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.logo{
+  font: bold 32px Georgia,serif;
+  color:var(--gold);
+  letter-spacing:4px;
+}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  border:0;
+  border-radius:24px;
+  padding:11px 18px;
+  background:var(--gold);
+  color:#20342b;
+  font-weight:bold;
+}
+select{
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:10px;
+  background:white;
+}
+.hero{
+  background:
+    radial-gradient(circle at top,#638b73,#153b32 75%);
+  text-align:center;
+  color:white;
+  padding:75px 15px;
+}
+.hero small{color:var(--gold);letter-spacing:4px}
+.hero h1{
+  font:bold clamp(36px,6vw,75px) Georgia,serif;
+  color:#f5d38d;
+  margin:15px 0;
+}
+.hero p{font-size:19px}
+main{
+  max-width:1450px;
+  margin:auto;
+  padding:25px 18px;
+}
+h2{
+  font: bold 30px Georgia,serif;
+  color:var(--green);
+}
+.toolbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+.toolbar input{
+  flex:1;
+  min-width:220px;
+  border:1px solid #ccc;
+  border-radius:12px;
+  padding:14px;
+}
+.categories{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding:12px 0 22px;
+}
+.cat{
+  flex-shrink:0;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:25px;
+  padding:11px 17px;
+}
+.cat.active{
+  background:var(--green);
+  color:white;
+}
+.grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fill,minmax(210px,1fr));
+  gap:18px;
+}
+.product{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 5px 20px #0001;
+  display:flex;
+  flex-direction:column;
+}
+.product img{
+  width:100%;
+  height:205px;
+  object-fit:cover;
+  background:#e8ece8;
+}
+.info{
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  flex:1;
+}
+.info h3{
+  margin:0;
+  font-size:16px;
+}
+.price{
+  color:#ad741f;
+  font-size:23px;
+  font-weight:bold;
+}
+.small{
+  color:#69746e;
+  font-size:12px;
+  line-height:1.7;
+}
+.green{
+  border:0;
+  background:var(--green);
+  color:white;
+  border-radius:10px;
+  padding:12px;
+  font-weight:bold;
+}
+.info .green{margin-top:auto}
+.notice{
+  background:#fff0cc;
+  border-radius:13px;
+  padding:17px;
+  margin:25px 0;
+  line-height:1.7;
+}
+footer{
+  background:var(--dark);
+  color:white;
+  padding:35px;
+  text-align:center;
+}
+.overlay{
+  position:fixed;
+  inset:0;
+  background:#071712d9;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:30;
+  padding:15px;
+}
+.overlay.show{display:flex}
+.modal{
+  position:relative;
+  background:white;
+  width:100%;
+  max-width:1000px;
+  max-height:94vh;
+  overflow:auto;
+  border-radius:20px;
+  padding:25px;
+}
+.close{
+  position:absolute;
+  top:10px;
+  right:12px;
+  border:0;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  font-size:25px;
+}
+.modalgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+.bigphoto{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:14px;
+}
+.thumbs{
+  display:flex;
+  gap:9px;
+  margin-top:10px;
+}
+.thumbs img{
+  width:75px;
+  height:75px;
+  object-fit:cover;
+  border-radius:9px;
+  cursor:pointer;
+  border:2px solid #ddd;
+}
+.thumbs img:hover{border-color:var(--gold)}
+.variants{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:10px 0 18px;
+}
+.variant{
+  border:1px solid #ccc;
+  border-radius:10px;
+  background:white;
+  padding:10px 13px;
+}
+.variant.selected{
+  background:var(--green);
+  color:white;
+}
+.spec{
+  background:#f2f5f2;
+  border-radius:12px;
+  padding:14px;
+  line-height:1.9;
+  font-size:14px;
+}
+.cartitem{
+  border-bottom:1px solid #ddd;
+  padding:15px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+}
+.wheel{
+  margin:20px auto;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  border:10px solid var(--gold);
+  background:conic-gradient(
+    #174537 0deg 60deg,
+    #d9ad56 60deg 120deg,
+    #356c56 120deg 180deg,
+    #f1dba6 180deg 240deg,
+    #245344 240deg 300deg,
+    #bc893d 300deg 360deg
+  );
+  display:grid;
+  place-items:center;
+  font:bold 25px Georgia,serif;
+  color:white;
+  text-shadow:0 2px 5px black;
+  transition:transform 3s ease-out;
+}
+.wheel.spin{transform:rotate(1800deg)}
+@media(max-width:700px){
+  .modalgrid{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .product img{height:150px}
+  .info{padding:10px}
+  .top{justify-content:center}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">♛ KOBANI</div>
-<div class="header-actions">
-<select id="language" onchange="changeLanguage(this.value)">
-<option value="en">🇬🇧 English</option>
-<option value="ar">🇸🇦 العربية</option>
-<option value="ku">☀️ Kurmancî</option>
-<option value="tr">🇹🇷 Türkçe</option>
-<option value="de">🇩🇪 Deutsch</option>
-<option value="fr">🇫🇷 Français</option>
-<option value="no">🇳🇴 Norsk</option>
-</select>
-<button class="btn" onclick="openWheel()" id="wheelTop">🎡 Spin & Win</button>
-<button class="btn" onclick="openCart()">🛒 <span id="cartLabel">Cart</span> (<span id="cartCount">0</span>)</button>
-</div>
+  <div class="top">
+    <div class="logo">♛ KOBANI</div>
+    <div class="actions">
+      <select id="language" onchange="changeLanguage()">
+        <option value="en">🇬🇧 English</option>
+        <option value="ar">🇸🇾 العربية</option>
+        <option value="tr">🇹🇷 Türkçe</option>
+        <option value="ku">Kurmancî</option>
+        <option value="no">🇳🇴 Norsk</option>
+        <option value="de">🇩🇪 Deutsch</option>
+      </select>
+      <button class="btn" onclick="openWheel()" id="spinButton">
+        🎡 SPIN
+      </button>
+      <button class="btn" onclick="openCart()" id="cartButton">
+        🛒 Cart (0)
+      </button>
+    </div>
+  </div>
 </header>
 
 <div class="hero">
-<div>✦ ♛ ✦</div>
-<h1>KOBANI GLOBAL SHOP</h1>
-<p id="heroText">Everything you love, all in one place</p>
-<button class="btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})" id="shopNow">SHOP NOW</button>
+  <small>✦ PREMIUM GLOBAL MARKETPLACE ✦</small>
+  <h1>KOBANI GLOBAL SHOP</h1>
+  <p id="heroText">Everything you need, in one place</p>
+  <button class="btn"
+    onclick="document.getElementById('catalog').scrollIntoView()"
+    id="shopButton">
+    SHOP NOW
+  </button>
 </div>
 
-<main>
-<section id="catalog">
-<h2 id="productsTitle">Explore Products</h2>
-<div class="toolbar">
-<input id="search" placeholder="Search products..." oninput="renderProducts()">
-<select id="sort" onchange="renderProducts()">
-<option value="default">Recommended</option>
-<option value="low">Price: Low to High</option>
-<option value="high">Price: High to Low</option>
-</select>
-</div>
-<div class="categories" id="categories"></div>
-<p id="productCount"></p>
-<div class="grid" id="products"></div>
-</section>
+<main id="catalog">
+  <h2 id="catalogTitle">Explore Products</h2>
+  <p id="count"></p>
 
-<div class="banner">
-<h2 id="promoTitle">♛ MAGIC REWARDS ♛</h2>
-<p id="promoDesc">Spin the golden wheel for a demo discount!</p>
-<button class="btn" id="promoButton" onclick="openWheel()">🎡 SPIN NOW</button>
-<p class="small" id="demoText">Demo only. No real discounts or prizes.</p>
-</div>
+  <div class="toolbar">
+    <input id="search"
+      placeholder="Search products..."
+      oninput="renderProducts()">
 
-<div class="referral">
-<h2 id="inviteTitle">🎁 Invite 20 Friends & Win</h2>
-<p id="inviteDesc">Invite 20 real friends and unlock a gift worth $20.</p>
-<h2 style="color:#ad812e">$20 🎁</h2>
-<strong>0 / 20</strong>
-<div class="progress"><div></div></div>
-<button class="btn" onclick="copyInvite()" id="inviteButton">🔗 Copy Store Link</button>
-<p class="small" id="inviteNote">Demo only. Real referral tracking requires accounts and a database.</p>
-</div>
+    <select id="sort" onchange="renderProducts()">
+      <option value="default">Featured</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+    </select>
+  </div>
+
+  <div class="categories" id="categories"></div>
+  <div class="grid" id="products"></div>
+
+  <div class="notice" id="notice">
+    ⚠️ DEMO STORE: Products, photos, prices, colors,
+    sizes and materials are examples.
+    Real stock, orders, payment and shipping
+    are not connected yet.
+  </div>
 </main>
 
 <footer>
-<div class="logo">KOBANI</div>
-<p id="footerText">Global shopping • Demo catalog • No live checkout</p>
+  <h2 style="color:#e8bc69">♛ KOBANI</h2>
+  <p>GLOBAL MEGA SHOP</p>
+  <p>Fashion • Electronics • Home • Tools • Camping • Automotive</p>
+  <p>© 2026 KOBANI — Demo Store</p>
 </footer>
 
-<div class="modal" id="cartModal">
-<div class="panel">
-<button class="close" onclick="closeModal('cartModal')">×</button>
-<h2 id="cartTitle">Your Cart</h2>
-<div id="cartItems"></div>
-<h3><span id="totalLabel">Total</span>: $<span id="cartTotal">0.00</span></h3>
-<button class="btn" onclick="openCheckout()" id="checkoutButton">Checkout Preview</button>
-</div>
-</div>
-
-<div class="modal" id="checkoutModal">
-<div class="panel checkout">
-<button class="close" onclick="closeModal('checkoutModal')">×</button>
-<h2 id="shippingTitle">Shipping Information</h2>
-<input id="fullName" placeholder="Full name">
-<input id="phone" placeholder="Phone">
-<input id="country" placeholder="Country">
-<input id="city" placeholder="City">
-<input id="address" placeholder="Address">
-<button class="btn" onclick="previewOrder()" id="orderButton">Preview Order</button>
-<p class="small" id="shippingNote">Demo only. No real order or payment is submitted.</p>
-</div>
-</div>
-
-<div class="modal" id="wheelModal">
-<div class="panel wheelpanel">
-<button class="close" style="color:white" onclick="closeModal('wheelModal')">×</button>
-<h2>♛ KOBANI ♛</h2>
-<h2 id="wheelTitle">GOLDEN MAGIC WHEEL</h2>
-<div class="wheelwrap">
-<div class="pointer">▼</div>
-<canvas id="wheel" width="500" height="500"></canvas>
-</div>
-<button class="btn" onclick="spin()" id="spinButton">✨ SPIN NOW ✨</button>
-<p id="result"></p>
-<p class="small" id="wheelNote">Free demo. No cash rewards.</p>
-</div>
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="close" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
+  </div>
 </div>
 
 <script>
-const categories=[
-{id:"fashion",en:"Fashion",ar:"أزياء",ku:"Cil û Berg",tr:"Moda",de:"Mode",fr:"Mode",no:"Mote",icon:"👕"},
-{id:"shoes",en:"Shoes",ar:"أحذية",ku:"Sol",tr:"Ayakkabı",de:"Schuhe",fr:"Chaussures",no:"Sko",icon:"👟"},
-{id:"watches",en:"Watches",ar:"ساعات",ku:"Saet",tr:"Saatler",de:"Uhren",fr:"Montres",no:"Klokker",icon:"⌚"},
-{id:"electronics",en:"Electronics",ar:"إلكترونيات",ku:"Elektronîk",tr:"Elektronik",de:"Elektronik",fr:"Électronique",no:"Elektronikk",icon:"🎧"},
-{id:"phones",en:"Phone Accessories",ar:"إكسسوارات موبايل",ku:"Amûrên Telefonê",tr:"Telefon Aksesuarları",de:"Handyzubehör",fr:"Accessoires téléphone",no:"Mobiltilbehør",icon:"📱"},
-{id:"beauty",en:"Beauty",ar:"تجميل",ku:"Bedewî",tr:"Güzellik",de:"Beauty",fr:"Beauté",no:"Skjønnhet",icon:"💄"},
-{id:"home",en:"Home",ar:"المنزل",ku:"Mal",tr:"Ev",de:"Zuhause",fr:"Maison",no:"Hjem",icon:"🏠"},
-{id:"kitchen",en:"Kitchen",ar:"المطبخ",ku:"Metbex",tr:"Mutfak",de:"Küche",fr:"Cuisine",no:"Kjøkken",icon:"🍳"},
-{id:"kids",en:"Kids & Toys",ar:"أطفال وألعاب",ku:"Zarok û Lîstok",tr:"Çocuk ve Oyuncak",de:"Kinder & Spielzeug",fr:"Enfants & Jouets",no:"Barn & Leker",icon:"🧸"},
-{id:"sports",en:"Sports",ar:"رياضة",ku:"Werzîş",tr:"Spor",de:"Sport",fr:"Sport",no:"Sport",icon:"⚽"},
-{id:"car",en:"Car Accessories",ar:"إكسسوارات سيارات",ku:"Amûrên Erebeyê",tr:"Araç Aksesuarları",de:"Autozubehör",fr:"Accessoires auto",no:"Biltilbehør",icon:"🚗"},
-{id:"jewelry",en:"Jewelry",ar:"مجوهرات وإكسسوارات",ku:"Zînet",tr:"Takı",de:"Schmuck",fr:"Bijoux",no:"Smykker",icon:"💍"}
+/*
+ KOBANI DEMO STORE
+ 24 categories x 5 products = 120 products.
+ All data and pictures are illustrative.
+*/
+
+const catalogData = [
+{
+ name:"Fashion",emoji:"👕",
+ image:"photo-1441986300917-64674bd600d8",
+ items:[
+ ["Cotton T-Shirt",12,"Cotton blend"],
+ ["Denim Jacket",39,"Denim cotton"],
+ ["Premium Hoodie",29,"Cotton polyester"],
+ ["Summer Dress",32,"Polyester blend"],
+ ["Classic Jeans",28,"Cotton denim"]
+]
+},
+{
+ name:"Shoes",emoji:"👟",
+ image:"photo-1542291026-7eec264c27ff",
+ items:[
+ ["Running Sneakers",34,"Mesh and rubber"],
+ ["Leather Boots",55,"Synthetic leather"],
+ ["Casual Loafers",27,"Synthetic leather"],
+ ["Safety Work Boots",49,"Rubber and composite"],
+ ["Fashion Heels",28,"Synthetic leather"]
+]
+},
+{
+ name:"Watches",emoji:"⌚",
+ image:"photo-1523275335684-37898b6baf30",
+ items:[
+ ["Classic Watch",35,"Stainless steel"],
+ ["Digital Sport Watch",25,"Silicone and polymer"],
+ ["Smart Watch",59,"Aluminum and silicone"],
+ ["Luxury Style Watch",75,"Metal alloy"],
+ ["Women's Fashion Watch",29,"Metal and leather"]
+]
+},
+{
+ name:"Electronics",emoji:"💻",
+ image:"photo-1498049794561-7780e7231661",
+ items:[
+ ["Wireless Headphones",29,"ABS plastic"],
+ ["Bluetooth Speaker",39,"Plastic and metal"],
+ ["Laptop Stand",19,"Aluminum"],
+ ["Wireless Keyboard",25,"ABS plastic"],
+ ["Computer Mouse",15,"ABS plastic"]
+]
+},
+{
+ name:"Phones",emoji:"📱",
+ image:"photo-1511707171634-5f897ff02aa9",
+ items:[
+ ["Phone Case",9,"TPU silicone"],
+ ["Fast Charging Cable",7,"Copper and PVC"],
+ ["Power Bank",28,"Plastic housing"],
+ ["Phone Holder",12,"ABS plastic"],
+ ["Screen Protector",6,"Tempered glass"]
+]
+},
+{
+ name:"Beauty",emoji:"💄",
+ image:"photo-1596462502278-27bfdc403348",
+ items:[
+ ["Makeup Brush Set",15,"Synthetic fibers"],
+ ["Cosmetic Organizer",18,"Acrylic"],
+ ["Hair Dryer",35,"Plastic and metal"],
+ ["Hair Straightener",32,"Ceramic plates"],
+ ["Makeup Mirror",21,"Glass and ABS"]
+]
+},
+{
+ name:"Home",emoji:"🏠",
+ image:"photo-1484154218962-a197022b5858",
+ items:[
+ ["Storage Organizer",19,"Plastic"],
+ ["LED Table Lamp",26,"Metal and plastic"],
+ ["Wall Clock",22,"Plastic and glass"],
+ ["Soft Blanket",29,"Polyester"],
+ ["Decorative Cushion",17,"Cotton polyester"]
+]
+},
+{
+ name:"Kitchen",emoji:"🍳",
+ image:"photo-1556911220-bff31c812dba",
+ items:[
+ ["Cookware Set",65,"Stainless steel"],
+ ["Kitchen Knife Set",35,"Stainless steel"],
+ ["Electric Kettle",29,"Steel and plastic"],
+ ["Cutting Board",12,"Bamboo"],
+ ["Food Storage Boxes",18,"Food-safe plastic"]
+]
+},
+{
+ name:"Furniture",emoji:"🛋️",
+ image:"photo-1555041469-a586c61ea9bc",
+ items:[
+ ["Modern Chair",89,"Wood and fabric"],
+ ["Coffee Table",99,"Engineered wood"],
+ ["Office Desk",149,"Wood and steel"],
+ ["Bookshelf",79,"Engineered wood"],
+ ["Bedside Cabinet",69,"Wood composite"]
+]
+},
+{
+ name:"Carpentry",emoji:"🪚",
+ image:"photo-1504917595217-d4dc5ebe6122",
+ items:[
+ ["Wood Hand Saw",19,"Steel and wood"],
+ ["Wood Chisel Set",29,"Steel"],
+ ["Carpenter Square",15,"Aluminum"],
+ ["Wood Clamps",24,"Steel and plastic"],
+ ["Woodworking Plane",45,"Steel and wood"]
+]
+},
+{
+ name:"Welding",emoji:"⚡",
+ image:"photo-1504307651254-35680f356dfd",
+ items:[
+ ["Welding Helmet",49,"Protective polymer"],
+ ["Welding Gloves",19,"Leather"],
+ ["Welding Electrode Holder",18,"Copper and polymer"],
+ ["Welding Apron",35,"Protective leather"],
+ ["Welding Clamp Set",24,"Steel"]
+]
+},
+{
+ name:"Metalwork",emoji:"🔩",
+ image:"photo-1581092160562-40aa08e78837",
+ items:[
+ ["Metal Cutting Disc Set",16,"Abrasive composite"],
+ ["Metal File Set",19,"Hardened steel"],
+ ["Bench Vise",59,"Cast iron"],
+ ["Steel Measuring Ruler",9,"Stainless steel"],
+ ["Metal Drill Bit Set",29,"High-speed steel"]
+]
+},
+{
+ name:"Painting",emoji:"🖌️",
+ image:"photo-1562259949-e8e7689d7828",
+ items:[
+ ["Paint Roller Set",19,"Foam and metal"],
+ ["Paint Brush Set",14,"Synthetic bristles"],
+ ["Paint Tray",9,"Plastic"],
+ ["Painter Masking Tape",7,"Paper adhesive"],
+ ["Paint Spray Tool",69,"Plastic and metal"]
+]
+},
+{
+ name:"Construction",emoji:"🧱",
+ image:"photo-1504307651254-35680f356dfd",
+ items:[
+ ["Safety Helmet",19,"Protective polymer"],
+ ["Construction Level",25,"Aluminum"],
+ ["Measuring Tape",12,"Steel and ABS"],
+ ["Safety Vest",11,"Polyester"],
+ ["Work Knee Pads",22,"Foam and polymer"]
+]
+},
+{
+ name:"Hand Tools",emoji:"🛠️",
+ image:"photo-1530124566582-a618bc2615dc",
+ items:[
+ ["Hammer",18,"Steel and fiberglass"],
+ ["Screwdriver Set",24,"Steel and plastic"],
+ ["Pliers Set",29,"Hardened steel"],
+ ["Adjustable Wrench",19,"Steel"],
+ ["Socket Tool Set",49,"Chrome vanadium steel"]
+]
+},
+{
+ name:"Power Tools",emoji:"🔧",
+ image:"photo-1504148455328-c376907d081c",
+ items:[
+ ["Cordless Drill",89,"Metal and ABS"],
+ ["Angle Grinder",79,"Metal and polymer"],
+ ["Electric Sander",65,"Metal and ABS"],
+ ["Electric Jigsaw",75,"Metal and polymer"],
+ ["Impact Driver",95,"Metal and ABS"]
+]
+},
+{
+ name:"Camping",emoji:"🏕️",
+ image:"photo-1478131143081-80f7f84ca84d",
+ items:[
+ ["Camping Tent",89,"Polyester and fiberglass"],
+ ["Sleeping Bag",49,"Polyester insulation"],
+ ["Camping Lantern",25,"ABS and LED"],
+ ["Camping Chair",39,"Steel and fabric"],
+ ["Portable Camping Stove",55,"Steel and aluminum"]
+]
+},
+{
+ name:"Travel",emoji:"🧳",
+ image:"photo-1476514525535-07fb3b4ae5f1",
+ items:[
+ ["Travel Backpack",45,"Polyester"],
+ ["Travel Suitcase",79,"ABS shell"],
+ ["Neck Pillow",15,"Memory foam"],
+ ["Travel Organizer",19,"Polyester"],
+ ["Travel Water Bottle",18,"Stainless steel"]
+]
+},
+{
+ name:"Automotive",emoji:"🚗",
+ image:"photo-1492144534655-ae79c964c9d7",
+ items:[
+ ["Car Phone Holder",14,"ABS plastic"],
+ ["Car Vacuum Cleaner",39,"Plastic and metal"],
+ ["Car Seat Organizer",19,"Polyester"],
+ ["Car Cleaning Kit",25,"Mixed materials"],
+ ["Tire Pressure Gauge",15,"Metal and plastic"]
+]
+},
+{
+ name:"Oils & Fluids",emoji:"🛢️",
+ image:"photo-1486262715619-67b85e0b08d3",
+ items:[
+ ["Engine Oil 5W-30",35,"Automotive lubricant"],
+ ["Engine Oil 10W-40",29,"Automotive lubricant"],
+ ["Gear Oil",24,"Automotive lubricant"],
+ ["Brake Fluid",15,"Automotive fluid"],
+ ["Coolant",18,"Automotive coolant"]
+]
+},
+{
+ name:"Garden",emoji:"🌿",
+ image:"photo-1416879595882-3373a0480b5b",
+ items:[
+ ["Garden Hose",29,"Flexible polymer"],
+ ["Pruning Shears",19,"Steel"],
+ ["Garden Shovel",25,"Steel and wood"],
+ ["Watering Can",15,"Plastic"],
+ ["Garden Gloves",12,"Fabric and rubber"]
+]
+},
+{
+ name:"Sports",emoji:"⚽",
+ image:"photo-1579952363873-27f3bade9f55",
+ items:[
+ ["Football",22,"Synthetic leather"],
+ ["Yoga Mat",19,"Foam"],
+ ["Dumbbell Set",49,"Steel and rubber"],
+ ["Resistance Bands",15,"Elastic polymer"],
+ ["Sports Backpack",29,"Polyester"]
+]
+},
+{
+ name:"Kids",emoji:"🧸",
+ image:"photo-1558060370-d644479cb6f7",
+ items:[
+ ["Building Blocks",24,"ABS plastic"],
+ ["Plush Teddy Bear",19,"Polyester"],
+ ["Kids Backpack",25,"Polyester"],
+ ["Toy Car Set",17,"Plastic"],
+ ["Kids Drawing Set",15,"Mixed materials"]
+]
+},
+{
+ name:"Pets",emoji:"🐾",
+ image:"photo-1583337130417-3346a1be7dee",
+ items:[
+ ["Pet Bed",39,"Polyester foam"],
+ ["Pet Food Bowl",15,"Stainless steel"],
+ ["Dog Leash",14,"Nylon"],
+ ["Pet Grooming Brush",12,"Plastic and metal"],
+ ["Pet Travel Carrier",49,"Fabric and polymer"]
+]
+}
 ];
 
-const catalog={
-fashion:[
-["Cotton T-Shirt",11.99,"Cotton jersey","S–XXL","photo-1521572163474-6864f9cf17ab"],
-["Casual Hoodie",25.99,"Cotton-polyester blend","S–XXL","photo-1556821840-3a63f95609a7"],
-["Denim Jacket",39.99,"Denim cotton","S–XL","photo-1544022613-e87ca75a784a"],
-["Summer Dress",28.50,"Polyester blend","S–XL","photo-1515372039744-b8f02a3ae446"],
-["Women's Handbag",24.50,"PU synthetic leather","Medium","photo-1548036328-c9fa89d128fa"],
-["Leather-Style Wallet",9.99,"PU synthetic leather","Compact","photo-1622560480605-d83c853bc5c3"],
-["Casual Shirt",18.99,"Cotton blend","S–XXL","photo-1598032895397-b9472444bf93"],
-["Winter Coat",54.99,"Polyester shell","S–XL","photo-1539533018447-63fcce2678e3"],
-["Fashion Sunglasses",12.99,"Plastic and polycarbonate","One size","photo-1511499767150-a48a237f0083"],
-["Baseball Cap",8.99,"Cotton twill","Adjustable","photo-1588850561407-ed78c282e89b"]
-],
-shoes:[
-["Running Sneakers",32,"Textile mesh, rubber sole","EU 36–45","photo-1542291026-7eec264c27ff"],
-["White Sneakers",29,"Synthetic leather, rubber","EU 36–45","photo-1525966222134-fcfa99b8ae77"],
-["Canvas Shoes",19,"Canvas textile, rubber","EU 36–44","photo-1520639888713-7851133b1ed0"],
-["Sport Trainers",35,"Mesh and EVA sole","EU 37–46","photo-1600185365483-26d7a4cc7519"],
-["Classic Boots",49,"Synthetic leather","EU 36–45","photo-1520639888713-7851133b1ed0"],
-["Summer Sandals",16,"Synthetic straps, rubber","EU 36–43","photo-1543163521-1bf539c55dd2"],
-["Fashion Heels",28,"Synthetic leather","EU 35–42","photo-1515347619252-60a4bf4fff4f"],
-["Walking Shoes",31,"Mesh textile","EU 36–46","photo-1549298916-b41d501d3772"],
-["Casual Loafers",27,"PU synthetic leather","EU 39–45","photo-1614252235316-8c857d38b5f4"],
-["Kids Sneakers",21,"Textile and rubber","EU 25–35","photo-1514989940723-e8e51635b782"]
-],
-watches:[
-["Classic Gold Watch",29.99,"Steel case, synthetic strap","One size","photo-1524592094714-0f0654e20314"],
-["Minimal Watch",22.99,"Metal case, leather-style strap","One size","photo-1523275335684-37898b6baf30"],
-["Silver Watch",34.99,"Stainless steel","One size","photo-1533139502658-0198f920d8e8"],
-["Sport Watch",19.99,"Plastic and silicone","Adjustable","photo-1508685096489-7aacd43bd3b1"],
-["Women's Fashion Watch",26,"Alloy case, synthetic strap","One size","photo-1524805444758-089113d48a6d"],
-["Digital Watch",17.99,"ABS plastic and silicone","Adjustable","photo-1508685096489-7aacd43bd3b1"],
-["Luxury-Style Watch",45,"Alloy and stainless steel","One size","photo-1523170335258-f5ed11844a49"],
-["Rose Gold Watch",31,"Alloy case, metal bracelet","One size","photo-1523275335684-37898b6baf30"],
-["Casual Leather Watch",24,"Alloy case, synthetic leather","One size","photo-1524592094714-0f0654e20314"],
-["Smart Watch",39.9,"Alloy-style case, silicone strap","Adjustable","photo-1508685096489-7aacd43bd3b1"]
-],
-electronics:[
-["Wireless Headphones",19.99,"ABS plastic, synthetic cushions","Adjustable","photo-1505740420928-5e560c06d30e"],
-["Bluetooth Speaker",22,"ABS plastic and metal mesh","Portable","photo-1608043152269-423dbba4e7e1"],
-["Wireless Earbuds",18.5,"ABS plastic","One size","photo-1590658268037-6bf12165a8df"],
-["Computer Mouse",12.99,"ABS plastic","Standard","photo-1527864550417-7fd91fc51a46"],
-["Gaming Keyboard",35,"ABS plastic, metal components","Standard","photo-1541140532154-b024d705b90a"],
-["Portable Power Bank",24,"Plastic casing","10000 mAh demo","photo-1609592424821-8b4a29c0a4d7"],
-["USB Desk Light",13,"Plastic and LED","Compact","photo-1507473885765-e6ed057f782c"],
-["Mini Camera",49,"Plastic and glass lens","Compact","photo-1516035069371-29a1b244cc32"],
-["Laptop Stand",21,"Aluminum alloy","Adjustable","photo-1498050108023-c5249f4df085"],
-["Portable Fan",14,"ABS plastic","Mini","photo-1524592094714-0f0654e20314"]
-],
-phones:[
-["Phone Case",7.99,"TPU silicone","Various models","photo-1603891128711-11b4b03bb138"],
-["Charging Cable",5.99,"PVC and copper","1 meter","photo-1583863788434-e58a36330cf0"],
-["Phone Holder",8.5,"ABS plastic","Universal","photo-1511707171634-5f897ff02aa9"],
-["Screen Protector",4.99,"Tempered glass","Various models","photo-1512941937669-90a1b58e7e9"],
-["Wireless Charger",17,"ABS plastic","Standard","photo-1583394838336-acd977736f90"],
-["Phone Ring Stand",4.5,"Metal alloy","Universal","photo-1603891128711-11b4b03bb138"],
-["Car Phone Mount",9.99,"ABS plastic and silicone","Universal","photo-1511707171634-5f897ff02aa9"],
-["Phone Pouch",11,"Synthetic leather","Universal","photo-1548036328-c9fa89d128fa"],
-["USB Adapter",6.5,"Plastic and metal","Standard","photo-1583863788434-e58a36330cf0"],
-["Selfie Tripod",18,"Aluminum and plastic","Adjustable","photo-1516035069371-29a1b244cc32"]
-],
-beauty:[
-["Women's Perfume",18.5,"Glass bottle, fragrance liquid","50 ml","photo-1541643600914-78b084683601"],
-["Makeup Brush Set",13,"Synthetic bristles, plastic handles","Set","photo-1512496015851-a90fb38ba796"],
-["Lipstick",7.5,"Cosmetic wax and pigments","Standard","photo-1586495777744-4413f21062fa"],
-["Face Cream",12,"Cosmetic cream in plastic jar","50 ml","photo-1556228578-0d85b1a4d571"],
-["Nail Polish Set",9,"Glass bottles, cosmetic lacquer","Set","photo-1632345031435-8727f6897d53"],
-["Hair Brush",6.99,"Plastic and nylon","Standard","photo-1522335789203-aabd1fc54bc9"],
-["Makeup Bag",10,"Polyester textile","Medium","photo-1548036328-c9fa89d128fa"],
-["Skin Care Set",25,"Mixed cosmetic formulas","Set","photo-1556229010-6c3f2c9ca5f8"],
-["Body Lotion",11,"Cosmetic lotion","250 ml","photo-1608248543803-ba4f8c70ae0b"],
-["Cosmetic Mirror",14,"Glass and plastic","Compact","photo-1522335789203-aabd1fc54bc9"]
-],
-home:[
-["Table Lamp",25,"Metal and fabric","Medium","photo-1507473885765-e6ed057f782c"],
-["Decorative Pillow",12,"Polyester textile","45×45 cm","photo-1584100936595-c0654b55a2e2"],
-["Wall Clock",18,"Plastic and glass","30 cm","photo-1563861826100-9cb868fdbe1c"],
-["Storage Basket",11,"Woven synthetic fiber","Medium","photo-1494438639946-1ebd1d20bf85"],
-["Bedside Lamp",23,"Metal and fabric","Small","photo-1507473885765-e6ed057f782c"],
-["Soft Blanket",22,"Polyester fleece","150×200 cm","photo-1584100936595-c0654b55a2e2"],
-["Flower Vase",15,"Ceramic","Medium","photo-1578500494198-246f612d3b3d"],
-["Picture Frame",8,"Wood-style composite, glass","20×25 cm","photo-1494438639946-1ebd1d20bf85"],
-["Desk Organizer",10,"Plastic","Medium","photo-1498050108023-c5249f4df085"],
-["Scented Candle",9,"Wax and glass","Small","photo-1603006905003-be475563bc59"]
-],
-kitchen:[
-["Water Bottle",9,"Stainless steel","500 ml","photo-1602143407151-7111542de6e8"],
-["Coffee Mug",8,"Ceramic","350 ml","photo-1514228742587-6b1558fcca3d"],
-["Kitchen Knife",14,"Stainless steel, plastic handle","Standard","photo-1593618998160-e34014e67546"],
-["Cooking Pan",27,"Aluminum alloy","24 cm","photo-1556911220-bff31c812dba"],
-["Food Storage Boxes",16,"Food-grade-style plastic","Set","photo-1556911220-bff31c812dba"],
-["Cutting Board",12,"Bamboo","Medium","photo-1593618998160-e34014e67546"],
-["Tea Cup Set",18,"Ceramic","Set of 4","photo-1514228742587-6b1558fcca3d"],
-["Kitchen Utensils",15,"Silicone and wood","Set","photo-1556911220-bff31c812dba"],
-["Lunch Box",11,"Plastic","Medium","photo-1602143407151-7111542de6e8"],
-["Coffee Pot",24,"Stainless steel","Medium","photo-1495474472287-4d71bcdd2085"]
-],
-kids:[
-["Teddy Bear",15,"Polyester plush","Medium","photo-1559454403-b8fb88521f11"],
-["Toy Car",9,"Plastic","Small","photo-1594787318286-3d835c1d207f"],
-["Building Blocks",19,"ABS-style plastic","Set","photo-1587654780291-39c9404d746b"],
-["Kids Backpack",17,"Polyester","Small","photo-1501785888041-af3ef285b470"],
-["Puzzle Set",12,"Cardboard","Standard","photo-1587654780291-39c9404d746b"],
-["Doll",16,"Plastic and textile","Medium","photo-1559454403-b8fb88521f11"],
-["Toy Train",20,"Plastic","Set","photo-1594787318286-3d835c1d207f"],
-["Coloring Kit",8,"Paper and colored pencils","Set","photo-1513364776144-60967b0f800f"],
-["Kids Water Bottle",9,"Plastic","350 ml","photo-1602143407151-7111542de6e8"],
-["Educational Toy",22,"Wood and plastic","Set","photo-1587654780291-39c9404d746b"]
-],
-sports:[
-["Yoga Mat",19,"Foam material","Standard","photo-1518611012118-696072aa579a"],
-["Football",16,"Synthetic leather","Size 5","photo-1579952363873-27f3bade9f55"],
-["Gym Gloves",12,"Polyester and synthetic leather","S–XL","photo-1517836357463-d25dfeac3438"],
-["Resistance Bands",13,"Elastic rubber","Set","photo-1518611012118-696072aa579a"],
-["Sports Bottle",8,"Plastic","750 ml","photo-1602143407151-7111542de6e8"],
-["Jump Rope",9,"PVC and plastic","Adjustable","photo-1517836357463-d25dfeac3438"],
-["Gym Bag",23,"Polyester","Medium","photo-1553062407-98eeb64c6a62"],
-["Fitness T-Shirt",14,"Polyester sports fabric","S–XXL","photo-1521572163474-6864f9cf17ab"],
-["Training Shorts",16,"Polyester","S–XL","photo-1517836357463-d25dfeac3438"],
-["Exercise Ball",18,"PVC","Standard","photo-1518611012118-696072aa579a"]
-],
-car:[
-["Car Phone Holder",9.99,"ABS plastic","Universal","photo-1511707171634-5f897ff02aa9"],
-["Car Seat Organizer",18,"Polyester","Universal","photo-1507136566006-cfc505b114fc"],
-["Car Cleaning Cloths",7,"Microfiber","Set","photo-1492144534655-ae79c964c9d7"],
-["Car Air Freshener",5,"Fragrance and plastic","Small","photo-1507136566006-cfc505b114fc"],
-["Car USB Charger",11,"Plastic and metal","Standard","photo-1583863788434-e58a36330cf0"],
-["Steering Wheel Cover",15,"PU synthetic leather","Universal","photo-1492144534655-ae79c964c9d7"],
-["Car Storage Box",17,"Polyester and plastic","Medium","photo-1507136566006-cfc505b114fc"],
-["Dashboard Mat",8,"Silicone","Universal","photo-1492144534655-ae79c964c9d7"],
-["Car Vacuum",35,"Plastic and metal","Portable","photo-1507136566006-cfc505b114fc"],
-["Car Sunshade",14,"Reflective textile","Universal","photo-1492144534655-ae79c964c9d7"]
-],
-jewelry:[
-["Fashion Ring",9,"Alloy and glass stone","Adjustable","photo-1605100804763-247f67b3557e"],
-["Necklace",13,"Zinc alloy","One size","photo-1599643478518-a784e5dc4c8f"],
-["Bracelet",8,"Metal alloy","Adjustable","photo-1611652022419-a9419f74343d"],
-["Earrings",11,"Metal alloy and glass","Pair","photo-1535632066927-ab7c9ab60908"],
-["Jewelry Set",24,"Zinc alloy and glass stones","Set","photo-1611652022419-a9419f74343d"],
-["Pearl-Style Necklace",17,"Imitation pearls","One size","photo-1599643478518-a784e5dc4c8f"],
-["Gold-Style Chain",15,"Metal alloy","One size","photo-1599643478518-a784e5dc4c8f"],
-["Charm Bracelet",12,"Metal alloy","Adjustable","photo-1611652022419-a9419f74343d"],
-["Hair Accessories",7,"Plastic and textile","Set","photo-1522335789203-aabd1fc54bc9"],
-["Jewelry Box",19,"PU synthetic leather, velvet-style lining","Small","photo-1494438639946-1ebd1d20bf85"]
-]
-};
+const shoeSizes = Array.from(
+  {length:31},
+  (_,i)=>"EU "+(20+i)
+);
+const clothesSizes = [
+  "XXS","XS","S","M","L","XL",
+  "2XL","3XL","4XL","5XL","6XL"
+];
+const kidsSizes = [
+  "0-3 months","3-6 months","6-12 months",
+  "1-2 years","3-4 years","5-6 years",
+  "7-8 years","9-10 years","11-12 years"
+];
+const standardSizes = [
+  "Small","Medium","Large","XL"
+];
+const standardColors = [
+  "Black","White","Gray","Blue",
+  "Red","Green","Brown","Beige"
+];
+
+const products=[];
+let nextId=1;
+
+catalogData.forEach(group=>{
+  group.items.forEach(item=>{
+    let sizes=["Standard"];
+    let colors=["Black","White","Silver"];
+
+    if(group.name==="Shoes"){
+      sizes=shoeSizes;
+      colors=standardColors;
+    }
+    if(group.name==="Fashion"){
+      sizes=clothesSizes;
+      colors=standardColors;
+    }
+    if(group.name==="Kids"){
+      sizes=kidsSizes;
+      colors=["Blue","Pink","Green","Yellow"];
+    }
+    if(["Furniture","Home","Kitchen",
+        "Camping","Travel","Garden","Pets"].includes(group.name)){
+      sizes=standardSizes;
+      colors=standardColors;
+    }
+    if(["Carpentry","Welding","Metalwork",
+        "Painting","Construction","Hand Tools",
+        "Power Tools"].includes(group.name)){
+      sizes=["Small","Medium","Large","Professional"];
+      colors=["Black","Red","Blue","Yellow"];
+    }
+    if(group.name==="Watches"){
+      sizes=["38mm","40mm","42mm","44mm","46mm"];
+      colors=["Black","Silver","Gold","Rose Gold"];
+    }
+    if(group.name==="Oils & Fluids"){
+      sizes=["1L","4L","5L","10L","20L"];
+      colors=["Standard"];
+    }
+
+    products.push({
+      id:nextId++,
+      name:item[0],
+      price:item[1],
+      material:item[2],
+      category:group.name,
+      image:group.image,
+      sizes:sizes,
+      colors:colors
+    });
+  });
+});
 
 const translations={
-en:{hero:"Everything you love, all in one place",shop:"SHOP NOW",products:"Explore Products",search:"Search products...",all:"All Products",add:"Add to Cart",material:"Material",size:"Size",cart:"Cart",cartTitle:"Your Cart",empty:"Your cart is empty",total:"Total",checkout:"Checkout Preview",shipping:"Shipping Information",order:"Preview Order",promo:"MAGIC REWARDS",promoDesc:"Spin the golden wheel for a demo discount!",spin:"SPIN NOW",wheel:"GOLDEN MAGIC WHEEL",invite:"Invite 20 Friends & Win",inviteDesc:"Invite 20 real friends and unlock a gift worth $20.",copy:"Copy Store Link",copied:"Store link copied!",demo:"Demo only. No real discounts or prizes.",inviteNote:"Demo only. Real referral tracking requires accounts and a database.",wheelNote:"Free demo. No cash rewards.",shippingNote:"Demo only. No real order or payment is submitted.",footer:"Global shopping • Demo catalog • No live checkout",required:"Please enter your name, country, city and address.",success:"Demo preview only. No order was placed.",prize:"Your demo reward:",count:"products"},
-ar:{hero:"كل ما تحبه في متجر واحد",shop:"تسوق الآن",products:"تصفح المنتجات",search:"ابحث عن منتج...",all:"كل المنتجات",add:"أضف للسلة",material:"المادة",size:"المقاس",cart:"السلة",cartTitle:"سلة مشترياتك",empty:"السلة فارغة",total:"المجموع",checkout:"معاينة الدفع",shipping:"معلومات الشحن",order:"معاينة الطلب",promo:"المكافآت السحرية",promoDesc:"دوّر العجلة الذهبية واكتشف خصماً تجريبياً!",spin:"دوّر الآن",wheel:"عجلة الحظ الذهبية",invite:"ادعُ 20 صديق واربح",inviteDesc:"ادعُ 20 صديق حقيقي واحصل على هدية بقيمة 20 دولار.",copy:"نسخ رابط المتجر",copied:"تم نسخ الرابط!",demo:"نسخة تجريبية، لا خصومات أو جوائز حقيقية.",inviteNote:"نظام الدعوات تجريبي ويحتاج حسابات وقاعدة بيانات.",wheelNote:"تجربة مجانية، بدون جوائز نقدية.",shippingNote:"نسخة تجريبية، لا يتم إرسال طلب أو دفع أي مبلغ.",footer:"تسوق عالمي • كتالوج تجريبي • بدون دفع حقيقي",required:"أدخل الاسم والبلد والمدينة والعنوان.",success:"معاينة فقط. لم يتم إرسال طلب حقيقي.",prize:"مكافأتك التجريبية:",count:"منتج"},
-ku:{hero:"Hemû tiştên ku tu hez dikî li vir in",shop:"NIHA BIKIRRE",products:"Berheman Bibîne",search:"Li berheman bigere...",all:"Hemû Berhem",add:"Têxe Sepetê",material:"Materyal",size:"Mezinahî",cart:"Sepet",cartTitle:"Sepeta Te",empty:"Sepet vala ye",total:"Tevahî",checkout:"Pêşdîtina Sifarişê",shipping:"Agahiyên Şandinê",order:"Sifarişê Bibîne",promo:"XELATÊN SIHRAWÎ",promoDesc:"Çerxa zêrîn bizivirîne!",spin:"NIHA BIZIVIRÎNE",wheel:"ÇERXA ZÊRÎN",invite:"20 Hevalan Vexwîne",inviteDesc:"20 hevalan vexwîne û diyariyek bi nirxa $20 bistîne.",copy:"Girêdanê Kopî Bike",copied:"Girêdan hat kopîkirin!",demo:"Tenê ceribandin e.",inviteNote:"Vexwendinên rastîn hesab û daneyên bikarhêneran dixwazin.",wheelNote:"Tenê ceribandin, pere tune ne.",shippingNote:"Tenê nimûne ye, sifariş nayê şandin.",footer:"Kirîna cîhanî • Dikana ceribandinê",required:"Nav, welat, bajar û navnîşan binivîse.",success:"Tenê pêşdîtin e; sifariş nehat şandin.",prize:"Xelata ceribandinê:",count:"berhem"},
-tr:{hero:"Sevdiğiniz her şey tek yerde",shop:"ALIŞVERİŞE BAŞLA",products:"Ürünleri Keşfet",search:"Ürün ara...",all:"Tüm Ürünler",add:"Sepete Ekle",material:"Malzeme",size:"Beden",cart:"Sepet",cartTitle:"Sepetiniz",empty:"Sepetiniz boş",total:"Toplam",checkout:"Sipariş Önizleme",shipping:"Teslimat Bilgileri",order:"Siparişi Önizle",promo:"SİHİRLİ ÖDÜLLER",promoDesc:"Altın çarkı çevirin!",spin:"ŞİMDİ ÇEVİR",wheel:"ALTIN ŞANS ÇARKI",invite:"20 Arkadaş Davet Et",inviteDesc:"20 arkadaş davet edin, 20$ değerinde hediye kazanın.",copy:"Mağaza Linkini Kopyala",copied:"Bağlantı kopyalandı!",demo:"Sadece demo, gerçek ödül yok.",inviteNote:"Gerçek davet takibi için hesap ve veritabanı gerekir.",wheelNote:"Sadece demo, nakit ödül yok.",shippingNote:"Demo. Gerçek sipariş veya ödeme yok.",footer:"Küresel alışveriş • Demo mağaza",required:"Ad, ülke, şehir ve adres girin.",success:"Sadece önizleme, sipariş verilmedi.",prize:"Demo ödülünüz:",count:"ürün"},
-de:{hero:"Alles, was du liebst, an einem Ort",shop:"JETZT SHOPPEN",products:"Produkte entdecken",search:"Produkte suchen...",all:"Alle Produkte",add:"In den Warenkorb",material:"Material",size:"Größe",cart:"Warenkorb",cartTitle:"Dein Warenkorb",empty:"Warenkorb ist leer",total:"Gesamt",checkout:"Bestellung ansehen",shipping:"Lieferadresse",order:"Vorschau",promo:"MAGISCHE BELOHNUNGEN",promoDesc:"Drehe das goldene Rad!",spin:"JETZT DREHEN",wheel:"GOLDENES GLÜCKSRAD",invite:"20 Freunde einladen",inviteDesc:"20 Freunde einladen und Geschenk im Wert von 20 $ erhalten.",copy:"Link kopieren",copied:"Link kopiert!",demo:"Nur Demo, keine echten Preise.",inviteNote:"Echte Empfehlungen benötigen Konten.",wheelNote:"Demo, kein Bargeld.",shippingNote:"Demo, keine echte Bestellung.",footer:"Globales Shopping • Demo-Shop",required:"Name, Land, Stadt und Adresse eingeben.",success:"Nur Vorschau, keine Bestellung.",prize:"Demo-Gewinn:",count:"Produkte"},
-fr:{hero:"Tout ce que vous aimez au même endroit",shop:"ACHETER",products:"Découvrir les produits",search:"Rechercher...",all:"Tous les produits",add:"Ajouter au panier",material:"Matière",size:"Taille",cart:"Panier",cartTitle:"Votre panier",empty:"Panier vide",total:"Total",checkout:"Aperçu commande",shipping:"Adresse de livraison",order:"Aperçu",promo:"RÉCOMPENSES MAGIQUES",promoDesc:"Tournez la roue dorée!",spin:"TOURNER",wheel:"ROUE DORÉE",invite:"Invitez 20 amis",inviteDesc:"Invitez 20 amis et gagnez un cadeau de 20 $.",copy:"Copier le lien",copied:"Lien copié!",demo:"Démo uniquement.",inviteNote:"Le parrainage réel nécessite des comptes.",wheelNote:"Démo, pas d'argent.",shippingNote:"Démo, aucune vraie commande.",footer:"Shopping mondial • Boutique démo",required:"Saisissez nom, pays, ville et adresse.",success:"Aperçu uniquement.",prize:"Récompense démo:",count:"produits"},
-no:{hero:"Alt du liker på ett sted",shop:"HANDLE NÅ",products:"Utforsk produkter",search:"Søk produkter...",all:"Alle produkter",add:"Legg i handlekurv",material:"Materiale",size:"Størrelse",cart:"Handlekurv",cartTitle:"Din handlekurv",empty:"Handlekurven er tom",total:"Totalt",checkout:"Ordreforhåndsvisning",shipping:"Leveringsadresse",order:"Forhåndsvis",promo:"MAGISKE PREMIER",promoDesc:"Spinn gullhjulet!",spin:"SPINN NÅ",wheel:"GYLLENT LYKKEHJUL",invite:"Inviter 20 venner",inviteDesc:"Inviter 20 venner og få en gave verdt $20.",copy:"Kopier lenke",copied:"Lenken er kopiert!",demo:"Kun demo, ingen ekte premier.",inviteNote:"Ekte verving krever brukerkontoer.",wheelNote:"Demo, ingen pengepremier.",shippingNote:"Demo, ingen ekte ordre.",footer:"Global handel • Demobutikk",required:"Fyll inn navn, land, by og adresse.",success:"Kun forhåndsvisning.",prize:"Din demopremie:",count:"produkter"}
+ en:{
+  hero:"Everything you need, in one place",
+  shop:"SHOP NOW",
+  catalog:"Explore Products",
+  search:"Search products...",
+  cart:"Cart",
+  details:"View Details",
+  add:"Add to Demo Cart",
+  size:"Size / Model",
+  color:"Color / Option",
+  material:"Material",
+  spin:"SPIN",
+  empty:"Your cart is empty"
+ },
+ ar:{
+  hero:"كل ما تحتاجه في مكان واحد",
+  shop:"تسوق الآن",
+  catalog:"اكتشف المنتجات",
+  search:"ابحث عن المنتجات...",
+  cart:"السلة",
+  details:"عرض التفاصيل",
+  add:"أضف إلى السلة التجريبية",
+  size:"المقاس / الموديل",
+  color:"اللون / الخيار",
+  material:"المادة",
+  spin:"عجلة الحظ",
+  empty:"السلة فارغة"
+ },
+ tr:{
+  hero:"İhtiyacınız olan her şey tek yerde",
+  shop:"ALIŞVERİŞE BAŞLA",
+  catalog:"Ürünleri Keşfet",
+  search:"Ürün ara...",
+  cart:"Sepet",
+  details:"Detayları Gör",
+  add:"Demo Sepete Ekle",
+  size:"Beden / Model",
+  color:"Renk / Seçenek",
+  material:"Malzeme",
+  spin:"ÇARK",
+  empty:"Sepet boş"
+ },
+ ku:{
+  hero:"Her tiştê ku pêwîst e li yek cihî",
+  shop:"NIHA BIKIRE",
+  catalog:"Berhemên me",
+  search:"Li berheman bigere...",
+  cart:"Selik",
+  details:"Hûrguliyan Bibîne",
+  add:"Têxe Selika Demo",
+  size:"Mezinahî / Model",
+  color:"Reng / Vebijark",
+  material:"Madde",
+  spin:"BIÇERXÎNE",
+  empty:"Selik vala ye"
+ },
+ no:{
+  hero:"Alt du trenger, på ett sted",
+  shop:"HANDLE NÅ",
+  catalog:"Utforsk Produkter",
+  search:"Søk produkter...",
+  cart:"Handlekurv",
+  details:"Se Detaljer",
+  add:"Legg i Demokurv",
+  size:"Størrelse / Modell",
+  color:"Farge / Alternativ",
+  material:"Materiale",
+  spin:"SPINN",
+  empty:"Handlekurven er tom"
+ },
+ de:{
+  hero:"Alles, was du brauchst, an einem Ort",
+  shop:"JETZT SHOPPEN",
+  catalog:"Produkte Entdecken",
+  search:"Produkte suchen...",
+  cart:"Warenkorb",
+  details:"Details Ansehen",
+  add:"Zum Demo-Warenkorb",
+  size:"Größe / Modell",
+  color:"Farbe / Option",
+  material:"Material",
+  spin:"DREHEN",
+  empty:"Warenkorb ist leer"
+ }
 };
 
-let products=[],nextId=1;
-Object.entries(catalog).forEach(([cat,items])=>{
-items.forEach(([name,price,material,size,img])=>{
-products.push({id:nextId++,cat,name,price,material,size,img});
-});
+let language="en";
+let activeCategory="All";
+let cart=[];
+let currentProduct=null;
+let selectedSize="";
+let selectedColor="";
+let currentPhoto=0;
+
+function text(key){
+  return translations[language][key] ||
+         translations.en[key];
+}
+
+function photoUrl(product,number=0){
+  /*
+   Illustrative category image.
+   Different crops are NOT verified product angles.
+  */
+  const widths=[900,850,800];
+  const crops=["center","left","right"];
+  return "https://images.unsplash.com/"+
+    product.image+
+    "?auto=format&fit=crop&w="+widths[number]+
+    "&h=850&q=80&crop="+crops[number];
+}
+
+function changeLanguage(){
+  language=document.getElementById("language").value;
+  document.documentElement.lang=language;
+  document.documentElement.dir=
+    language==="ar"?"rtl":"ltr";
+
+  document.getElementById("heroText").textContent=text("hero");
+  document.getElementById("shopButton").textContent=text("shop");
+  document.getElementById("catalogTitle").textContent=text("catalog");
+  document.getElementById("search").placeholder=text("search");
+  document.getElementById("spinButton").textContent=
+    "🎡 "+text("spin");
+
+  updateCartButton();
+  renderProducts();
+}
+
+function renderCategories(){
+  const box=document.getElementById("categories");
+
+  box.innerHTML=
+    '<button class="cat '+(activeCategory==="All"?"active":"")+
+    '" onclick="chooseCategory(\'All\')">✨ All Products</button>';
+
+  catalogData.forEach(group=>{
+    const button=document.createElement("button");
+    button.className="cat"+
+      (activeCategory===group.name?" active":"");
+    button.textContent=group.emoji+" "+group.name;
+    button.onclick=()=>chooseCategory(group.name);
+    box.appendChild(button);
+  });
+}
+
+function chooseCategory(category){
+  activeCategory=category;
+  renderCategories();
+  renderProducts();
+}
+
+function renderProducts(){
+  const search=document.getElementById("search")
+    .value.toLowerCase().trim();
+
+  let visible=products.filter(p=>{
+    const matchesCategory=
+      activeCategory==="All" ||
+      p.category===activeCategory;
+
+    const matchesSearch=
+      (p.name+" "+p.category+" "+p.material)
+      .toLowerCase().includes(search);
+
+    return matchesCategory&&matchesSearch;
+  });
+
+  const sort=document.getElementById("sort").value;
+
+  if(sort==="low"){
+    visible.sort((a,b)=>a.price-b.price);
+  }
+  if(sort==="high"){
+    visible.sort((a,b)=>b.price-a.price);
+  }
+
+  document.getElementById("count").textContent=
+    visible.length+" demo products • "+
+    catalogData.length+" categories";
+
+  const box=document.getElementById("products");
+  box.innerHTML="";
+
+  visible.forEach(p=>{
+    const card=document.createElement("div");
+    card.className="product";
+
+    card.innerHTML=`
+      <img src="${photoUrl(p)}"
+        loading="lazy"
+        alt="Illustrative category image">
+      <div class="info">
+        <h3>${p.name}</h3>
+        <div class="price">$${p.price.toFixed(2)}</div>
+        <div class="small">
+          ${text("material")}: ${p.material}<br>
+          ${p.sizes.length} size/model options<br>
+          ${p.colors.length} color/option choices<br>
+          DEMO PRODUCT
+        </div>
+        <button class="green">
+          ${text("details")}
+        </button>
+      </div>
+    `;
+
+    card.querySelector("button").onclick=
+      ()=>openProduct(p.id);
+
+    box.appendChild(card);
+  });
+}
+
+function showModal(html){
+  document.getElementById("modalContent").innerHTML=html;
+  document.getElementById("overlay").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+
+function closeModal(){
+  document.getElementById("overlay").classList.remove("show");
+  document.body.style.overflow="";
+}
+
+document.getElementById("overlay")
+  .addEventListener("click",e=>{
+    if(e.target.id==="overlay")closeModal();
+  });
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape")closeModal();
 });
 
-let language=localStorage.getItem("kobani_lang")||"en";
-let cart=JSON.parse(localStorage.getItem("kobani_mega_cart")||"{}");
-let selectedCategory="all";
-let angle=0,spinning=false;
-const $=id=>document.getElementById(id);
-const t=()=>translations[language]||translations.en;
-function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function changeLanguage(l){
-language=l;localStorage.setItem("kobani_lang",l);
-document.documentElement.lang=l;
-document.documentElement.dir=l==="ar"?"rtl":"ltr";
-$("language").value=l;
-const a=t();
-const ids={heroText:"hero",shopNow:"shop",productsTitle:"products",cartLabel:"cart",cartTitle:"cartTitle",totalLabel:"total",checkoutButton:"checkout",shippingTitle:"shipping",orderButton:"order",promoTitle:"promo",promoDesc:"promoDesc",promoButton:"spin",inviteTitle:"invite",inviteDesc:"inviteDesc",inviteButton:"copy",demoText:"demo",inviteNote:"inviteNote",wheelNote:"wheelNote",shippingNote:"shippingNote",footerText:"footer",wheelTitle:"wheel"};
-Object.entries(ids).forEach(([id,key])=>$(id).textContent=a[key]);
-$("wheelTop").textContent="🎡 "+a.spin;
-$("spinButton").textContent="✨ "+a.spin+" ✨";
-$("search").placeholder=a.search;
-renderCategories();renderProducts();renderCart();drawWheel();
+function openProduct(id){
+  currentProduct=products.find(p=>p.id===id);
+  selectedSize="";
+  selectedColor="";
+  currentPhoto=0;
+  drawProduct();
 }
-function renderCategories(){
-$("categories").innerHTML=`<button class="cat ${selectedCategory==="all"?"active":""}" onclick="setCategory('all')">🌍 ${t().all}</button>`+
-categories.map(c=>`<button class="cat ${selectedCategory===c.id?"active":""}" onclick="setCategory('${c.id}')">${c.icon} ${safe(c[language]||c.en)}</button>`).join("");
+
+function drawProduct(){
+  const p=currentProduct;
+
+  showModal(`
+    <div class="modalgrid">
+      <div>
+        <img class="bigphoto"
+          id="bigPhoto"
+          src="${photoUrl(p,currentPhoto)}">
+
+        <div class="thumbs" id="thumbs"></div>
+
+        <p class="small">
+          Photos are illustrative category images,
+          not verified photos of this exact model or color.
+        </p>
+      </div>
+
+      <div>
+        <p class="small">${p.category} • DEMO</p>
+        <h2>${p.name}</h2>
+        <div class="price">$${p.price.toFixed(2)}</div>
+
+        <h3>${text("color")}</h3>
+        <div class="variants" id="colorChoices"></div>
+
+        <h3>${text("size")}</h3>
+        <div class="variants" id="sizeChoices"></div>
+
+        <h3>Quantity</h3>
+        <select id="quantity">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+        </select>
+
+        <div class="spec" style="margin-top:18px">
+          <b>${text("material")}:</b> ${p.material}<br>
+          <b>Category:</b> ${p.category}<br>
+          <b>Available stock:</b> Not verified<br>
+          <b>Shipping:</b> Not connected<br>
+          <b>Price:</b> Demo example
+        </div>
+
+        <button class="btn"
+          style="width:100%;margin-top:18px"
+          id="addToCart">
+          🛒 ${text("add")}
+        </button>
+      </div>
+    </div>
+  `);
+
+  const thumbs=document.getElementById("thumbs");
+
+  for(let i=0;i<3;i++){
+    const image=document.createElement("img");
+    image.src=photoUrl(p,i);
+    image.alt="Illustrative photo "+(i+1);
+    image.onclick=()=>{
+      currentPhoto=i;
+      document.getElementById("bigPhoto").src=
+        photoUrl(p,i);
+    };
+    thumbs.appendChild(image);
+  }
+
+  renderChoices("colorChoices",p.colors,"color");
+  renderChoices("sizeChoices",p.sizes,"size");
+
+  document.getElementById("addToCart").onclick=addToCart;
 }
-function setCategory(id){selectedCategory=id;renderCategories();renderProducts()}
-function renderProducts(){
-const q=$("search").value.toLowerCase().trim();
-const sort=$("sort").value;
-let found=products.filter(p=>{
-const c=categories.find(x=>x.id===p.cat);
-return(selectedCategory==="all"||p.cat===selectedCategory)&&
-[p.name,p.material,p.size,c.en,c.ar,c.ku,c.tr].join(" ").toLowerCase().includes(q);
-});
-if(sort==="low")found.sort((a,b)=>a.price-b.price);
-if(sort==="high")found.sort((a,b)=>b.price-a.price);
-$("productCount").textContent=found.length+" "+t().count;
-$("products").innerHTML=found.map(p=>`
-<div class="product">
-<img loading="lazy" src="https://images.unsplash.com/${p.img}?auto=format&fit=crop&w=500&q=75" alt="${safe(p.name)}">
-<div class="product-body">
-<h3>${safe(p.name)}</h3>
-<div class="price">$${p.price.toFixed(2)}</div>
-<div class="details">
-<b>${t().material}:</b> ${safe(p.material)}<br>
-<b>${t().size}:</b> ${safe(p.size)}
-</div>
-<div class="demo-label">DEMO PRODUCT</div>
-<button class="btn" onclick="addCart(${p.id})">🛒 ${t().add}</button>
-</div></div>`).join("");
+
+function renderChoices(containerId,values,type){
+  const box=document.getElementById(containerId);
+  box.innerHTML="";
+
+  values.forEach(value=>{
+    const button=document.createElement("button");
+    button.className="variant";
+    button.textContent=value;
+
+    const selected=
+      type==="color"?selectedColor:selectedSize;
+
+    if(value===selected){
+      button.classList.add("selected");
+    }
+
+    button.onclick=()=>{
+      if(type==="color"){
+        selectedColor=value;
+      }else{
+        selectedSize=value;
+      }
+
+      renderChoices(containerId,values,type);
+    };
+
+    box.appendChild(button);
+  });
 }
-function addCart(id){cart[id]=(cart[id]||0)+1;saveCart()}
-function saveCart(){localStorage.setItem("kobani_mega_cart",JSON.stringify(cart));renderCart()}
-function renderCart(){
-let total=0,count=0;
-$("cartItems").innerHTML=Object.entries(cart).map(([id,qty])=>{
-const p=products.find(x=>x.id==id);
-if(!p)return"";
-total+=p.price*qty;count+=qty;
-return `<div class="cartrow"><div>${safe(p.name)}<br>$${p.price.toFixed(2)} × ${qty}</div><div><button onclick="adjust(${id},-1)">−</button> ${qty} <button onclick="adjust(${id},1)">+</button></div></div>`;
-}).join("")||`<p>${t().empty}</p>`;
-$("cartCount").textContent=count;
-$("cartTotal").textContent=total.toFixed(2);
+
+function addToCart(){
+  if(!selectedColor||!selectedSize){
+    alert("Please select a color and size/model first.");
+    return;
+  }
+
+  const qty=Number(
+    document.getElementById("quantity").value
+  );
+
+  cart.push({
+    id:currentProduct.id,
+    name:currentProduct.name,
+    price:currentProduct.price,
+    size:selectedSize,
+    color:selectedColor,
+    qty:qty
+  });
+
+  updateCartButton();
+  openCart();
 }
-function adjust(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];saveCart()}
-function openModal(id){$(id).classList.add("show")}
-function closeModal(id){$(id).classList.remove("show")}
-function openCart(){renderCart();openModal("cartModal")}
-function openCheckout(){if(!Object.keys(cart).length)return alert(t().empty);closeModal("cartModal");openModal("checkoutModal")}
-function previewOrder(){
-if(!["fullName","country","city","address"].every(id=>$(id).value.trim()))return alert(t().required);
-alert(t().success);closeModal("checkoutModal");
+
+function updateCartButton(){
+  const count=cart.reduce((sum,item)=>sum+item.qty,0);
+
+  document.getElementById("cartButton").textContent=
+    "🛒 "+text("cart")+" ("+count+")";
 }
-function copyInvite(){
-const link=location.origin+location.pathname;
-if(navigator.clipboard&&window.isSecureContext){
-navigator.clipboard.writeText(link).then(()=>alert(t().copied)).catch(()=>prompt("Copy link:",link));
-}else prompt("Copy link:",link);
+
+function openCart(){
+  let total=0;
+
+  let html="<h2>🛒 "+text("cart")+"</h2>";
+
+  if(cart.length===0){
+    html+="<p>"+text("empty")+"</p>";
+  }
+
+  cart.forEach((item,index)=>{
+    const subtotal=item.price*item.qty;
+    total+=subtotal;
+
+    html+=`
+      <div class="cartitem">
+        <div>
+          <b>${item.name}</b><br>
+          <span class="small">
+            ${item.color} • ${item.size}<br>
+            Quantity: ${item.qty}
+          </span>
+        </div>
+        <div>
+          <b>$${subtotal.toFixed(2)}</b><br>
+          <button class="variant"
+            onclick="removeCartItem(${index})">
+            Remove
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  html+=`
+    <h2 style="text-align:right">
+      Total: $${total.toFixed(2)}
+    </h2>
+    <div class="notice">
+      This is a demo cart.
+      Real checkout, payment and delivery are disabled.
+    </div>
+  `;
+
+  showModal(html);
 }
-const rewards=["5% OFF","10% OFF","15% OFF","20% OFF","$0.50 OFF","TRY AGAIN","30% OFF","SURPRISE"];
-const colors=["#f4ce80","#641469","#f4ce80","#641469","#f4ce80","#641469","#f4ce80","#641469"];
-function drawWheel(){
-const c=$("wheel"),ctx=c.getContext("2d");
-ctx.clearRect(0,0,500,500);
-rewards.forEach((v,i)=>{
-const a=-Math.PI/2+i*Math.PI/4,b=a+Math.PI/4;
-ctx.beginPath();ctx.moveTo(250,250);ctx.arc(250,250,240,a,b);ctx.closePath();
-ctx.fillStyle=colors[i];ctx.fill();ctx.strokeStyle="#e8c37c";ctx.lineWidth=4;ctx.stroke();
-ctx.save();ctx.translate(250,250);ctx.rotate(a+Math.PI/8);
-ctx.textAlign="center";ctx.fillStyle=i%2?"white":"#43134e";
-ctx.font="bold 20px Arial";ctx.fillText(v,150,7);ctx.restore();
-});
-ctx.beginPath();ctx.arc(250,250,55,0,Math.PI*2);ctx.fillStyle="#e8c37c";ctx.fill();
-ctx.beginPath();ctx.arc(250,250,45,0,Math.PI*2);ctx.fillStyle="#43134e";ctx.fill();
-ctx.fillStyle="#ffe5a5";ctx.font="bold 48px Georgia";ctx.textAlign="center";ctx.fillText("K",250,267);
+
+function removeCartItem(index){
+  cart.splice(index,1);
+  updateCartButton();
+  openCart();
 }
-function openWheel(){openModal("wheelModal");drawWheel()}
-function spin(){
-if(spinning)return;
-spinning=true;$("spinButton").disabled=true;$("result").textContent="";
-const i=Math.floor(Math.random()*rewards.length);
-const sector=360/rewards.length;
-const desired=(360-(i+.5)*sector)%360;
-const current=((angle%360)+360)%360;
-angle+=2160+(desired-current+360)%360;
-$("wheel").style.transform=`rotate(${angle}deg)`;
-setTimeout(()=>{
-$("result").textContent=t().prize+" "+rewards[i];
-spinning=false;$("spinButton").disabled=false;
-},5100);
+
+function openWheel(){
+  showModal(`
+    <h2 style="text-align:center">
+      🎡 KOBANI LUCKY WHEEL
+    </h2>
+
+    <div class="wheel" id="wheel">
+      ♛ KOBANI
+    </div>
+
+    <p style="text-align:center">
+      Free demo promotion — no cash prizes
+    </p>
+
+    <button class="btn"
+      style="display:block;margin:auto"
+      id="startWheel">
+      SPIN NOW
+    </button>
+
+    <h3 id="wheelResult"
+      style="text-align:center"></h3>
+  `);
+
+  document.getElementById("startWheel").onclick=()=>{
+    const button=document.getElementById("startWheel");
+    button.disabled=true;
+
+    document.getElementById("wheel")
+      .classList.add("spin");
+
+    document.getElementById("wheelResult").textContent=
+      "🎉 Demo reward: 5% discount! "+
+      "No cash value. Not redeemable.";
+  };
 }
-document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
-changeLanguage(language);
+
+renderCategories();
+renderProducts();
+updateCartButton();
 </script>
+
 </body>
 </html>
