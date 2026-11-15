@@ -1,20 +1,178 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>6866 BOX</title>
+<title>6866 | Hazel Edition</title>
 <style>
-body {background:#111;color:gold;text-align:center;font-family:Arial;padding:40px;}
-button {background:gold;padding:15px;border:0;border-radius:10px;cursor:pointer;}
+* {
+box-sizing:border-box;
+}
+body {
+margin:0;
+font-family:Arial,sans-serif;
+background:radial-gradient(ellipse at top,#81734e,#30281f 45%,#171410);
+color:#e7c9a8;
+min-height:100vh;
+text-align:center;
+}
+header {
+padding:25px;
+background:#211c16;
+border-bottom:1px solid #92805a;
+}
+.logo {
+font-family:Georgia,serif;
+font-size:48px;
+letter-spacing:8px;
+color:#e7c9a8;
+}
+.subtitle {
+font-size:12px;
+letter-spacing:5px;
+color:#bda17a;
+}
+nav {
+padding:18px;
+background:#30281f;
+}
+nav a {
+color:#e7c9a8;
+text-decoration:none;
+margin:10px;
+}
+.hero {
+padding:45px 15px;
+}
+.hero h1 {
+font-size:32px;
+font-weight:normal;
+}
+.hero p {
+color:#c5b394;
+}
+.cards {
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:18px;
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+.card {
+background:linear-gradient(145deg,#63563a,#30281f);
+border:1px solid #92805a;
+border-radius:20px;
+padding:25px 12px;
+box-shadow:0 10px 30px #0004;
+transition:0.3s;
+}
+.card:hover {
+transform:translateY(-5px);
+border-color:#e7c9a8;
+}
+.gift {
+font-size:65px;
+padding:15px;
+filter:drop-shadow(0 0 15px #bda17a66);
+}
+button {
+background:linear-gradient(135deg,#e7c9a8,#92805a);
+color:#30281f;
+border:none;
+padding:14px;
+border-radius:12px;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
+width:100%;
+}
+button:hover {
+filter:brightness(1.15);
+}
+#result {
+padding:25px;
+font-size:20px;
+color:#e7c9a8;
+}
+footer {
+border-top:1px solid #63563a;
+padding:30px;
+color:#bda17a;
+font-size:12px;
+}
+@media(max-width:500px){
+.cards {gap:10px;padding:12px;}
+.card {padding:18px 10px;}
+.gift {font-size:48px;}
+}
 </style>
 </head>
 <body>
-<h1>6866 BOX</h1>
-<h2>أهلاً بك في موقع 6866</h2>
-<p>🎁</p>
-<button onclick="document.getElementById('gift').textContent='حصلت على شارة ذهبية مجانية!'">افتح الهدية</button>
-<p id="gift"></p>
-<p>نسخة ترفيهية مجانية</p>
+
+<header>
+<div class="logo">6866</div>
+<div class="subtitle">HAZEL EDITION</div>
+</header>
+
+<nav>
+<a href="#">الرئيسية</a>
+<a href="#gifts">الهدايا المجانية</a>
+</nav>
+
+<section class="hero">
+<h1>أهلاً بك في عالم 6866</h1>
+<p>عالم من الأناقة والهدايا الجميلة</p>
+<span>✦ ───── ✦ ───── ✦</span>
+</section>
+
+<div class="cards" id="gifts">
+
+<div class="card">
+<div class="gift">🎁</div>
+<h3>Hazel Box</h3>
+<p>الهدية العسلية</p>
+<button onclick="gift('شارة عسلية')">فتح مجاني</button>
+</div>
+
+<div class="card">
+<div class="gift">🌿</div>
+<h3>Olive Box</h3>
+<p>الهدية الزيتونية</p>
+<button onclick="gift('شارة زيتونية')">فتح مجاني</button>
+</div>
+
+<div class="card">
+<div class="gift">💎</div>
+<h3>Diamond Box</h3>
+<p>هدية الألماس</p>
+<button onclick="gift('شارة ألماس')">فتح مجاني</button>
+</div>
+
+<div class="card">
+<div class="gift">👑</div>
+<h3>Royal Box</h3>
+<p>الهدية الملكية</p>
+<button onclick="gift('تاج ملكي')">فتح مجاني</button>
+</div>
+
+</div>
+
+<div id="result" aria-live="polite"></div>
+
+<footer>
+6866 © HAZEL EDITION
+<br><br>
+منصة ترفيهية مجانية - بدون أموال حقيقية
+</footer>
+
+<script>
+function gift(name){
+document.getElementById("result").textContent =
+"✨ حصلت على "+name+" افتراضية!";
+}
+</script>
+
 </body>
 </html>
