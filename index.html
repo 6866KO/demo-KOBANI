@@ -3,144 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>6866 | Hazel Collections</title>
+<title>6866 | Hazel Luxury</title>
 <style>
 *{box-sizing:border-box}
 body{
 margin:0;
-background:radial-gradient(ellipse at top,#887552,#343c2d,#141a15);
-color:#f8e5bd;
 font-family:Arial,sans-serif;
+background:radial-gradient(ellipse at top,#827151,#35412e,#131a13);
+color:#f7e4bd;
+min-height:100vh;
 }
 header{
-padding:25px;
-text-align:center;
-border-bottom:1px solid #b99d68;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:20px;
+background:#192017;
+border-bottom:1px solid #c3a16a;
 }
 .logo{
-font:65px Georgia;
-letter-spacing:12px;
+font:42px Georgia;
+letter-spacing:5px;
+color:#e8c581;
 }
-.hero{text-align:center;padding:30px}
-h1{font:44px Georgia}
-h2{font:24px Georgia}
+button{
+border:0;
+border-radius:12px;
+padding:13px 20px;
+background:linear-gradient(120deg,#f4dfad,#ad8549);
+color:#24271d;
+font-weight:bold;
+cursor:pointer;
+}
+.hero{
+text-align:center;
+padding:45px 15px;
+}
+.hero h1{
+font:44px Georgia;
+margin:10px;
+}
+.hero p{color:#d2c3a4}
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:20px;
+padding:20px;
 max-width:1400px;
 margin:auto;
-padding:20px;
 }
 .card{
-background:#ffffff0c;
-border:1px solid #99835d;
-border-radius:22px;
-overflow:hidden;
+border:1px solid #a58e61;
+background:#ffffff0a;
+border-radius:20px;
 padding:12px;
 text-align:center;
 }
-.card:hover{
-border-color:#ffe1a1;
-transform:translateY(-3px);
-}
-.cover{
-height:220px;
-border-radius:15px;
-overflow:hidden;
-background:#d5c7a7;
-}
-.cover img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-button{
-background:linear-gradient(120deg,#ffe5ac,#b78c4b);
-color:#29271c;
-border:0;
-border-radius:25px;
-padding:14px 22px;
-font-weight:bold;
-cursor:pointer;
-}
-.card button{width:100%}
-dialog{
-width:min(1100px,95vw);
-max-height:90vh;
-background:#283126;
-color:#f8e5bd;
-border:1px solid #c6aa72;
-border-radius:24px;
-padding:22px;
-}
-dialog::backdrop{background:#000c}
-.top{
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
-.window{
-overflow:hidden;
-background:#161d16;
-border:1px solid #bba16b;
-border-radius:16px;
-padding:15px 0;
-margin:20px 0;
-}
-.track{
-display:flex;
-width:max-content;
-animation:slide 35s linear infinite;
-}
-@keyframes slide{
-to{transform:translateX(-50%)}
-}
-.tile{
-width:160px;
-flex-shrink:0;
-background:#394333;
-border:1px solid #8e805f;
+.card:hover{border-color:#ffe1a1}
+.photo{
+height:190px;
+background:#a99c7d;
 border-radius:12px;
 overflow:hidden;
-text-align:center;
-margin:6px;
-}
-.photo{
-height:140px;
-background:#e3dac7;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:45px;
+font-size:60px;
 }
 .photo img{
 width:100%;
 height:100%;
 object-fit:cover;
 }
-.name{padding:12px 4px}
+h2{font:23px Georgia}
+.price{
+color:#e9c57f;
+font-size:19px;
+font-weight:bold;
+padding:8px;
+}
+.card button{width:100%}
+small{color:#c6b99e}
+dialog{
+background:#283326;
+color:#f8e5bd;
+border:1px solid #c3a16a;
+border-radius:22px;
+width:min(1000px,95vw);
+max-height:90vh;
+padding:20px;
+}
+dialog::backdrop{background:#000c}
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+.window{
+overflow:hidden;
+background:#141b14;
+border:1px solid #c3a16a;
+border-radius:15px;
+margin:20px 0;
+}
+.track{
+display:flex;
+width:max-content;
+animation:slide 40s linear infinite;
+}
+@keyframes slide{
+to{transform:translateX(-50%)}
+}
+.tile{
+width:145px;
+flex-shrink:0;
+background:#3b4634;
+border:1px solid #8f805d;
+border-radius:12px;
+padding:6px;
+margin:5px;
+text-align:center;
+}
+.tile .photo{height:120px}
 .products{
 display:grid;
 grid-template-columns:repeat(5,1fr);
-gap:12px;
+gap:10px;
 }
 .products .tile{
 width:100%;
 margin:0;
 }
-footer{
-text-align:center;
-padding:35px;
-color:#bdb399;
+.panel{text-align:center;padding:20px}
+.balance{
+font-size:48px;
+color:#e9c57f;
+padding:25px;
+}
+input{
+background:#192017;
+color:#f7e4bd;
+border:1px solid #c3a16a;
+border-radius:10px;
+padding:15px;
+width:90%;
+margin:12px 0;
+}
+nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+display:flex;
+justify-content:space-around;
+background:#192017;
+border-top:1px solid #c3a16a;
+padding:12px 0;
+z-index:5;
+}
+nav button{
+background:transparent;
+color:#e9c57f;
+padding:6px;
 font-size:12px;
 }
+footer{
+text-align:center;
+padding:25px 15px 100px;
+font-size:12px;
+color:#c6b99e;
+}
 @media(max-width:700px){
-.grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
-.cover{height:160px}
+.grid{
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:10px;
+}
+.photo{height:150px}
 .products{grid-template-columns:repeat(2,1fr)}
-h1{font-size:32px}
+.hero h1{font-size:32px}
 h2{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){
+.track{animation:none}
 }
 </style>
 </head>
@@ -148,201 +194,219 @@ h2{font-size:19px}
 
 <header>
 <div class="logo">6866</div>
-<p>HAZEL EDITION</p>
+<button onclick="panel('wallet')">
+👛 $0.00
+</button>
 </header>
 
 <section class="hero">
-<h1>Accessories Collections</h1>
-<p>20 signature collections</p>
+<small>HAZEL LUXURY EDITION</small>
+<h1>Exclusive Collections</h1>
+<p>Discover 20 signature collections</p>
+<small>Free catalog experience</small>
 </section>
 
-<main class="grid" id="boxes"></main>
+<main id="boxes" class="grid"></main>
 
-<dialog id="modal">
+<dialog id="collection">
 <div class="top">
-<h2 id="title"></h2>
-<button id="close">Close</button>
+<h2 id="collectionTitle"></h2>
+<button onclick="closeDialog('collection')">✕</button>
 </div>
 
-<p>Animated collection preview</p>
+<p>Animated product showcase</p>
 
 <div class="window">
-<div class="track" id="track"></div>
+<div id="track" class="track"></div>
 </div>
 
-<button id="pause">Pause preview</button>
+<button id="pause" onclick="pausePreview()">
+Pause preview
+</button>
 
 <h2>Collection contents</h2>
-<div class="products" id="products"></div>
+<div id="products" class="products"></div>
 </dialog>
 
+<dialog id="account">
+<div class="top">
+<h2 id="accountTitle"></h2>
+<button onclick="closeDialog('account')">✕</button>
+</div>
+<div id="accountContent" class="panel"></div>
+</dialog>
+
+<nav>
+<button onclick="window.scrollTo(0,0)">🏠 Home</button>
+<button onclick="document.getElementById('boxes').scrollIntoView()">📦 Boxes</button>
+<button onclick="panel('wallet')">👛 Wallet</button>
+<button onclick="panel('history')">📜 History</button>
+<button onclick="panel('profile')">👤 Profile</button>
+</nav>
+
 <footer>
-6866 HAZEL EDITION
-<p>Free catalog preview. No payments or prizes.</p>
+6866 · HAZEL LUXURY
+<p>Free demonstration. No payments or prizes.</p>
 </footer>
 
 <script>
 
-const catalog = [
+const $ = id => document.getElementById(id);
 
-["Gold Watch","⌚","1524805444758-089113d48a6d"],
-["Crystal Ring","💍","1605100804763-247f67b3557e"],
-["Headphones","🎧","1505740420928-5e560c06d30e"],
-["Smartphone","📱","1511707171634-5f897ff02aa9"],
-["Sunglasses","🕶️","1511499767150-a48a237f0083"],
-["Perfume","🌸","1541643600914-78b084683601"],
-["Silver Watch","⌚","1523275335684-37898b6baf30"],
-["Jewelry Set","💎","1535632066927-ab7c9ab60908"],
-["Handbag","👜","1584917865442-de89df76afd3"],
-["Sneakers","👟","1542291026-7eec264c27ff"],
-["Camera","📷","1516035069371-29a1b244cc32"],
-["Gaming Controller","🎮","1600080972464-8e5f35f63d08"],
-["Keyboard","⌨️","1587829741301-dc798b83add3"],
-["Backpack","🎒","1553062407-98eeb64c6a62"],
-["Classic Shoes","👞","1549298916-b41d501d3772"],
-["Tablet","📱","1544244015-0df4b3ffc6b0"],
-["Speaker","🔊","1608043152269-423dbba4e7e1"],
-["Fashion Jacket","🧥","1551028719-00167b16eac5"],
-["Laptop","💻","1496181133206-80ce9b88a853"],
-["Luxury Pen","🖊️",""],
-
-["Keychain","🔑",""],
-["USB Cable","🔌",""],
-["Hair Clip","🎀",""],
-["Pocket Mirror","🪞",""],
-["Phone Case","📱",""],
-["Bracelet","📿",""],
-["Wallet","👛",""],
-["Comb","🪮",""],
-["Phone Stand","📱",""],
-["LED Light","🔦",""],
-["USB Stick","💾",""],
-["Notebook","📓",""],
-["Pencil","✏️",""],
-["Cotton Socks","🧦",""],
-["Travel Pouch","👝",""],
-["Hair Band","🎀",""],
-["Card Holder","💳",""],
-["Mini Brush","🖌️",""],
-["Screen Cloth","🧽",""],
-["Luggage Tag","🏷️",""],
-["Silk Scarf","🧣",""],
-["Water Bottle","🧴",""],
-["Fashion Belt","👔",""],
-["Small Purse","👛",""],
-["Canvas Bag","🛍️",""],
-["Bookmark","🔖",""],
-["Sticker Pack","⭐",""],
-["Cable Organizer","🔌",""],
-["Phone Grip","📱",""],
-["Mini Organizer","🧰",""]
-
+const mainProducts = [
+["Golden Time","Gold Watch",150,"⌚","1524805444758-089113d48a6d"],
+["Diamond Rose","Crystal Ring",120,"💍","1605100804763-247f67b3557e"],
+["Sound Wave","Headphones",180,"🎧","1505740420928-5e560c06d30e"],
+["Mobile Style","Smartphone",650,"📱","1511707171634-5f897ff02aa9"],
+["Royal Vision","Sunglasses",95,"🕶️","1511499767150-a48a237f0083"],
+["Royal Scent","Perfume",85,"🌸","1541643600914-78b084683601"],
+["Silver Moon","Silver Watch",110,"⌚","1523275335684-37898b6baf30"],
+["Crystal Garden","Jewelry",160,"💎","1535632066927-ab7c9ab60908"],
+["Elegant Lady","Handbag",130,"👜","1584917865442-de89df76afd3"],
+["Street Style","Sneakers",140,"👟","1542291026-7eec264c27ff"],
+["Creative Studio","Camera",450,"📷","1516035069371-29a1b244cc32"],
+["Gaming Style","Controller",65,"🎮","1600080972464-8e5f35f63d08"],
+["Digital Desk","Keyboard",90,"⌨️","1587829741301-dc798b83add3"],
+["Travel Club","Backpack",75,"🎒","1553062407-98eeb64c6a62"],
+["Classic Man","Shoes",100,"👞","1549298916-b41d501d3772"],
+["Modern Tablet","Tablet",350,"📱","1544244015-0df4b3ffc6b0"],
+["Music Lounge","Speaker",80,"🔊","1608043152269-423dbba4e7e1"],
+["Urban Fashion","Jacket",125,"🧥","1551028719-00167b16eac5"],
+["Office Elite","Laptop",900,"💻","1496181133206-80ce9b88a853"],
+["Hazel Signature","Luxury Pen",70,"🖊️",""]
 ];
 
-const collections = [
-
-["Golden Time",0,[20,21,24,25,26,28,29,30,36,42]],
-["Diamond Rose",1,[22,23,25,27,34,35,37,40,43,44]],
-["Sound Wave",2,[21,24,28,30,31,34,38,46,47,48]],
-["Mobile Style",3,[20,21,24,28,29,30,34,38,47,48]],
-["Royal Vision",4,[23,26,33,34,36,38,39,40,42,44]],
-["Royal Scent",5,[22,23,27,31,34,35,37,40,43,45]],
-["Silver Moon",6,[20,25,26,29,31,32,36,39,42,45]],
-["Crystal Garden",7,[22,23,25,27,35,37,40,43,44,46]],
-["Elegant Lady",8,[23,26,27,34,35,36,40,43,44,49]],
-["Street Style",9,[20,26,33,34,39,41,42,44,46,49]],
-["Creative Studio",10,[21,29,30,31,32,34,38,39,47,49]],
-["Gaming Style",11,[20,21,24,28,30,31,38,46,47,48]],
-["Digital Desk",12,[21,28,29,30,31,32,38,45,47,49]],
-["Travel Club",13,[20,26,27,33,34,39,41,44,45,49]],
-["Classic Man",14,[20,26,27,33,36,39,40,42,44,45]],
-["Modern Tablet",15,[21,24,28,30,31,32,38,46,47,48]],
-["Music Lounge",16,[20,21,29,30,34,38,41,46,47,49]],
-["Urban Fashion",17,[22,26,33,34,35,36,40,42,43,44]],
-["Office Elite",18,[21,28,30,31,32,36,38,45,47,49]],
-["Hazel Signature",19,[20,23,25,26,31,32,36,40,45,49]]
-
+const accessories = [
+["Keychain",0.30,"🔑"],
+["USB Cable",0.50,"🔌"],
+["Hair Clip",0.40,"🎀"],
+["Pocket Mirror",0.60,"🪞"],
+["Phone Case",1.00,"📱"],
+["Bracelet",0.80,"📿"],
+["Wallet",2.00,"👛"],
+["Comb",0.30,"🪮"],
+["Phone Stand",1.50,"📱"],
+["LED Light",0.80,"🔦"],
+["USB Stick",2.50,"💾"],
+["Notebook",0.70,"📓"],
+["Pencil",0.20,"✏️"],
+["Cotton Socks",1.20,"🧦"],
+["Travel Pouch",1.50,"👝"],
+["Hair Band",0.40,"🎀"],
+["Card Holder",1.00,"💳"],
+["Mini Brush",0.50,"🖌️"],
+["Screen Cloth",0.30,"🧽"],
+["Luggage Tag",0.70,"🏷️"],
+["Scarf",2.50,"🧣"],
+["Water Bottle",2.00,"🧴"],
+["Fashion Belt",1.80,"👔"],
+["Small Purse",1.50,"👛"],
+["Canvas Bag",2.00,"🛍️"],
+["Bookmark",0.20,"🔖"],
+["Sticker Pack",0.30,"⭐"],
+["Cable Organizer",0.50,"🔌"],
+["Phone Grip",0.80,"📱"],
+["Mini Organizer",1.50,"🧰"]
 ];
 
-const $=id=>document.getElementById(id);
+const sets = [
+[0,1,4,5,6,8,9,10,16,22],
+[2,3,5,7,14,15,17,20,23,24],
+[1,4,8,10,11,14,18,26,27,28],
+[0,1,4,8,9,10,14,18,27,28],
+[3,6,13,14,16,18,19,20,22,24],
+[2,3,7,11,14,15,17,20,23,25],
+[0,5,6,9,11,12,16,19,22,25],
+[2,3,5,7,15,17,20,23,24,26],
+[3,6,7,14,15,16,20,23,24,29],
+[0,6,13,14,19,21,22,24,26,29],
+[1,9,10,11,12,14,18,19,27,29],
+[0,1,4,8,10,11,18,26,27,28],
+[1,8,9,10,11,12,18,25,27,29],
+[0,6,7,13,14,19,21,24,25,29],
+[0,6,7,13,16,19,20,22,24,25],
+[1,4,8,10,11,12,18,26,27,28],
+[0,1,9,10,14,18,21,26,27,29],
+[2,6,13,14,15,16,20,22,23,24],
+[1,8,10,11,12,16,18,25,27,29],
+[0,3,5,6,11,12,16,20,25,29]
+];
 
-function picture(product){
+let history = [];
 
-const div=document.createElement("div");
-div.className="photo";
-div.textContent=product[1];
-
-if(product[2]){
-
-const img=document.createElement("img");
-
-img.src="https://images.unsplash.com/photo-"+
-product[2]+"?auto=format&fit=crop&w=500&q=80";
-
-img.alt=product[0];
-
-img.onload=()=>{
-div.textContent="";
-div.append(img);
-};
-
+function money(value){
+return "$" + value.toFixed(2);
 }
 
-return div;
+function photo(product){
+const el = document.createElement("div");
+el.className = "photo";
+el.textContent = product[2];
+
+if(product[3]){
+const img = document.createElement("img");
+img.alt = product[0];
+img.onload = function(){
+el.replaceChildren(img);
+};
+img.src = "https://images.unsplash.com/photo-" +
+product[3] + "?auto=format&fit=crop&w=500&q=80";
+}
+
+return el;
 }
 
 function tile(product){
+const el = document.createElement("article");
+el.className = "tile";
 
-const el=document.createElement("article");
-el.className="tile";
+const name = document.createElement("p");
+name.textContent = product[0];
 
-const label=document.createElement("div");
-label.className="name";
-label.textContent=product[0];
+const price = document.createElement("div");
+price.className = "price";
+price.textContent = money(product[1]);
 
-el.append(picture(product),label);
-
+el.append(photo(product),name,price);
 return el;
-
 }
 
-collections.forEach((box,i)=>{
+mainProducts.forEach((item,i)=>{
+const card = document.createElement("article");
+card.className = "card";
 
-const card=document.createElement("article");
-card.className="card";
+const title = document.createElement("h2");
+title.textContent = item[0];
 
-const cover=picture(catalog[box[1]]);
-cover.className="photo cover";
+const note = document.createElement("p");
+note.textContent = "11 products";
 
-const title=document.createElement("h2");
-title.textContent=box[0];
+const button = document.createElement("button");
+button.textContent = "OPEN BOX";
+button.onclick = ()=>openBox(i);
 
-const description=document.createElement("p");
-description.textContent="11 products";
+const demo = document.createElement("small");
+demo.textContent = "Free preview";
 
-const button=document.createElement("button");
-button.textContent="View collection";
-button.onclick=()=>showCollection(i);
-
-card.append(cover,title,description,button);
+card.append(
+photo(item.slice(1)),
+title,note,button,demo
+);
 
 $("boxes").append(card);
-
 });
 
-function showCollection(i){
+function openBox(i){
+const item = mainProducts[i];
 
-const box=collections[i];
-
-const items=[
-catalog[box[1]],
-...box[2].map(n=>catalog[n])
+const items = [
+item.slice(1),
+...sets[i].map(n=>accessories[n])
 ];
 
-$("title").textContent=box[0];
-
-$("track").replaceChildren();
+$("collectionTitle").textContent = item[0];
 $("products").replaceChildren();
+$("track").replaceChildren();
 
 items.forEach(p=>{
 $("products").append(tile(p));
@@ -352,26 +416,91 @@ $("products").append(tile(p));
 $("track").append(tile(p));
 });
 
-$("track").style.animationPlayState="running";
-$("pause").textContent="Pause preview";
+$("track").style.animationPlayState = "running";
+$("pause").textContent = "Pause preview";
 
-$("modal").showModal();
+history.unshift({
+name:item[0],
+date:new Date().toLocaleString()
+});
 
+$("collection").showModal();
 }
 
-$("close").onclick=()=>$("modal").close();
+function pausePreview(){
+const track = $("track");
+const paused = track.style.animationPlayState === "paused";
 
-$("pause").onclick=()=>{
+track.style.animationPlayState =
+paused ? "running" : "paused";
 
-const track=$("track");
+$("pause").textContent =
+paused ? "Pause preview" : "Resume preview";
+}
 
-const paused=track.style.animationPlayState==="paused";
+function closeDialog(id){
+$(id).close();
+}
 
-track.style.animationPlayState=paused?"running":"paused";
+function panel(type){
+const content = $("accountContent");
 
-$("pause").textContent=paused?"Pause preview":"Resume preview";
+if(type === "wallet"){
+$("accountTitle").textContent = "Demo Wallet";
+content.innerHTML = `
+<p>Display balance</p>
+<div class="balance">$0.00</div>
+<p>Demonstration only</p>
+<small>No deposits or withdrawals</small>
+`;
+}
 
-};
+if(type === "profile"){
+$("accountTitle").textContent = "My Profile";
+content.innerHTML = `
+<div style="font-size:60px">👤</div>
+<input id="username" placeholder="Display name">
+<button onclick="saveProfile()">Save Profile</button>
+<p id="message"></p>
+<small>Local demo profile</small>
+`;
+
+try{
+$("username").value =
+localStorage.getItem("6866_profile") || "";
+}catch(e){}
+}
+
+if(type === "history"){
+$("accountTitle").textContent = "Activity History";
+content.replaceChildren();
+
+if(!history.length){
+content.textContent = "No activity yet";
+}
+
+history.forEach(item=>{
+const p = document.createElement("p");
+p.textContent =
+item.name + " · Preview · " + item.date;
+content.append(p);
+});
+}
+
+$("account").showModal();
+}
+
+function saveProfile(){
+try{
+localStorage.setItem(
+"6866_profile",
+$("username").value
+);
+$("message").textContent = "Saved ✓";
+}catch(e){
+$("message").textContent = "Storage unavailable";
+}
+}
 
 </script>
 </body>
