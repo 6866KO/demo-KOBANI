@@ -4,151 +4,357 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>6866 | Hazel Edition</title>
+
 <style>
 *{box-sizing:border-box}
+
 body{
 margin:0;
-background:radial-gradient(ellipse at top,#93805c,#494333,#211e19);
-color:#f6e6cf;
+background:radial-gradient(ellipse at top,#93805c,#454633,#191d17);
+color:#f8e8ca;
 font-family:Arial,sans-serif;
 text-align:center;
 min-height:100vh;
 }
-header{padding:35px;border-bottom:1px solid #ad9672}
-.logo{font:55px Georgia;letter-spacing:10px}
-.subtitle{letter-spacing:5px;font-size:12px}
-h1{font-family:Georgia}
+
+header{
+padding:35px;
+border-bottom:1px solid #bba16b;
+}
+
+.logo{
+font:65px Georgia;
+letter-spacing:14px;
+}
+
+.subtitle{
+letter-spacing:6px;
+font-size:12px;
+margin:12px;
+}
+
+h1{
+font:42px Georgia;
+margin-top:35px;
+}
+
+select,button{
+border:1px solid #d6b77d;
+border-radius:25px;
+padding:13px 22px;
+background:linear-gradient(120deg,#ffe6b4,#bd965c);
+color:#30291d;
+cursor:pointer;
+font-weight:bold;
+}
+
+select{margin:15px}
+
 .grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:16px;
-max-width:850px;
-margin:auto;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+max-width:1150px;
+margin:30px auto;
 padding:20px;
 }
+
 .card{
-background:linear-gradient(145deg,#827357,#403a30);
 border:1px solid #bba382;
 border-radius:24px;
 padding:25px 12px;
+background:linear-gradient(145deg,#ffffff12,#00000030);
+overflow:hidden;
 }
-svg{width:110px;height:110px}
-button{
-background:linear-gradient(135deg,#f2ddc5,#c7a47c);
-color:#403326;
-border:0;
-border-radius:14px;
-padding:15px 25px;
-font-weight:bold;
-cursor:pointer;
+
+.gift{
+position:relative;
+width:140px;
+height:110px;
+margin:40px auto;
+border-radius:8px;
+background:linear-gradient(125deg,var(--c),#24251e);
+box-shadow:15px 20px 28px #0007;
 }
-button:hover{filter:brightness(1.1)}
-#collection{
-max-width:850px;
-margin:25px auto;
-padding:20px;
+
+.gift:before{
+content:"";
+position:absolute;
+top:-15px;
+left:-7px;
+width:154px;
+height:30px;
+background:linear-gradient(120deg,var(--c),#454338);
+border:1px solid #d8bf8c;
+border-radius:5px;
 }
-.items{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
+
+.gift:after{
+content:"";
+position:absolute;
+left:58px;
+top:-15px;
+width:24px;
+height:125px;
+background:linear-gradient(90deg,#9b7139,#ffe2a0,#ae8143);
 }
+
+h2{font:25px Georgia}
+
+dialog{
+background:#30382b;
+color:#f8e8ca;
+border:1px solid #c6a56e;
+border-radius:24px;
+width:min(850px,94vw);
+padding:24px;
+}
+
+dialog::backdrop{
+background:#000b;
+}
+
+.rail{
+display:flex;
+gap:15px;
+overflow:auto;
+padding:16px;
+scroll-snap-type:x mandatory;
+}
+
 .item{
-background:#ffffff12;
-border:1px solid #a99476;
-border-radius:18px;
-padding:18px;
+flex:0 0 210px;
+scroll-snap-align:start;
+background:#f5eadb;
+color:#312b20;
+border-radius:16px;
+overflow:hidden;
+padding-bottom:15px;
 }
-.item svg{width:90px;height:90px}
-footer{padding:30px;font-size:12px}
+
+.item img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.item b{
+display:block;
+padding:10px;
+}
+
+footer{
+padding:35px;
+color:#d4c3a3;
+font-size:13px;
+}
+
+@media(max-width:750px){
+.grid{grid-template-columns:repeat(2,1fr)}
+h1{font-size:32px}
+.gift{transform:scale(.8);margin:25px auto}
+}
+
+@media(max-width:350px){
+.grid{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
 
 <header>
 <div class="logo">6866</div>
 <div class="subtitle">HAZEL EDITION</div>
+
+<select id="lang">
+<option value="en">English</option>
+<option value="ar">العربية</option>
+<option value="ku">Kurmancî</option>
+<option value="no">Norsk</option>
+</select>
 </header>
 
-<h1>Discover Your Collection</h1>
-<p>Luxury meets elegance</p>
+<h1 id="heading">The Hazel Collection</h1>
+<p id="sub">Explore four signature gift collections.</p>
 
-<div class="grid" id="boxes"></div>
+<main class="grid" id="grid"></main>
 
-<section id="collection" hidden>
-<h2 id="name"></h2>
-<div class="items" id="items"></div>
-</section>
+<dialog id="modal">
+<h2 id="title"></h2>
+<div class="rail" id="rail"></div>
+<button id="next">Next products</button>
+<button id="close">Close</button>
+</dialog>
 
-<footer>
-Free demo | Virtual collection | No real prizes
+<footer id="foot">
+Free design preview · No purchases, wagering or prizes
 </footer>
 
 <script>
-const pictures = {
-watch:`<svg viewBox="0 0 120 120">
-<rect x="46" y="2" width="28" height="116" rx="9" fill="#c8a56b"/>
-<circle cx="60" cy="60" r="35" fill="#e9cf9a"/>
-<circle cx="60" cy="60" r="29" fill="#38372c"/>
-<path d="M60 38V60L77 70" stroke="#f6e1b0" stroke-width="4" fill="none"/>
-<circle cx="60" cy="60" r="4" fill="gold"/>
-</svg>`,
-
-ring:`<svg viewBox="0 0 120 120">
-<circle cx="60" cy="76" r="29" fill="none" stroke="#dcb77b" stroke-width="12"/>
-<polygon points="30,35 45,15 75,15 90,35 60,66" fill="#e3f5f5"/>
-<path d="M30 35H90M45 15L60 66L75 15" stroke="#8cb9c4" fill="none"/>
-</svg>`,
-
-phone:`<svg viewBox="0 0 120 120">
-<rect x="30" y="4" width="60" height="112" rx="12" fill="#c8b49c"/>
-<rect x="35" y="9" width="50" height="102" rx="9" fill="#626b49"/>
-<circle cx="58" cy="70" r="24" fill="#a7a078"/>
-<circle cx="66" cy="45" r="18" fill="#c5b28d"/>
-<rect x="48" y="13" width="24" height="7" rx="4" fill="#222"/>
-</svg>`,
-
-tv:`<svg viewBox="0 0 120 120">
-<rect x="3" y="17" width="114" height="76" rx="5" fill="#222"/>
-<rect x="8" y="22" width="104" height="66" rx="3" fill="#a4b29a"/>
-<path d="M8 80L40 40L65 65L90 32L112 65V88H8Z" fill="#536747"/>
-<path d="M60 93V105M35 107H85" stroke="#c6b28e" stroke-width="5"/>
-</svg>`
-};
 
 const groups=[
-{title:"Watch Box",type:"watch",items:["Golden Watch","Classic Watch","Silver Watch","Sport Watch"]},
-{title:"Ring Box",type:"ring",items:["Diamond Ring","Golden Ring","Silver Ring","Rose Ring"]},
-{title:"Phone Box",type:"phone",items:["Premium Phone","Smartphone","Classic Phone","Mini Phone"]},
-{title:"TV Box",type:"tv",items:["62-inch Smart TV","4K TV","LED TV","Mini Monitor"]}
+[
+"Watch Box","#7c8b57",
+[
+["Classic Watch","photo-1524805444758-089113d48a6d"],
+["Modern Watch","photo-1523275335684-37898b6baf30"],
+["Sport Watch","photo-1547996160-81dfa63595aa"]
+]
+],
+[
+"Jewelry Box","#a77b86",
+[
+["Diamond Ring","photo-1605100804763-247f67b3557e"],
+["Jewelry","photo-1535632066927-ab7c9ab60908"]
+]
+],
+[
+"Phone Box","#77736b",
+[
+["Smartphone","photo-1511707171634-5f897ff02aa9"],
+["Mobile Phone","photo-1510557880182-3d4d3cba35a5"]
+]
+],
+[
+"TV Box","#427d70",
+[
+["Television","photo-1593359677879-a4bb92f829d1"],
+["Home Display","photo-1461151304267-38535e780c79"]
+]
+]
 ];
 
-document.getElementById("boxes").innerHTML=
-groups.map((g,i)=>`
-<div class="card">
-${pictures[g.type]}
-<h2>${g.title}</h2>
-<button onclick="showBox(${i})">
-View Collection
-</button>
-</div>
-`).join("");
+const translations={
+en:[
+"The Hazel Collection",
+"Explore four signature gift collections.",
+"Preview collection",
+"Close",
+"Next products",
+"Free design preview · No purchases, wagering or prizes",
+["Watch Box","Jewelry Box","Phone Box","TV Box"]
+],
 
-function showBox(i){
-const g=groups[i];
-document.getElementById("collection").hidden=false;
-document.getElementById("name").textContent=g.title;
-document.getElementById("items").innerHTML=
-g.items.map(item=>`
-<div class="item">
-${pictures[g.type]}
-<h3>${item}</h3>
-<p>Virtual Item</p>
-</div>
-`).join("");
-document.getElementById("collection")
-.scrollIntoView({behavior:"smooth"});
+ar:[
+"مجموعة هازل",
+"استكشف أربع مجموعات هدايا",
+"معاينة المجموعة",
+"إغلاق",
+"المنتجات التالية",
+"معاينة مجانية بدون دفع أو مراهنات أو جوائز",
+["صندوق الساعات","صندوق المجوهرات","صندوق الهواتف","صندوق الشاشات"]
+],
+
+ku:[
+"Koleksiyona Hazel",
+"Çar koleksiyonên diyariyan bibîne",
+"Koleksiyonê bibîne",
+"Bigire",
+"Berhemên din",
+"Tenê pêşdîtina belaş",
+["Saet","Zêr","Telefon","Televîzyon"]
+],
+
+no:[
+"Hazel-kolleksjonen",
+"Utforsk fire gavekolleksjoner",
+"Vis kolleksjon",
+"Lukk",
+"Neste produkter",
+"Gratis forhåndsvisning · Ingen kjøp, spill eller premier",
+["Klokkeboks","Smykkeboks","Mobilboks","TV-boks"]
+]
+};
+
+const $=id=>document.getElementById(id);
+
+function render(){
+
+let t=translations[$("lang").value];
+
+$("heading").textContent=t[0];
+$("sub").textContent=t[1];
+$("close").textContent=t[3];
+$("next").textContent=t[4];
+$("foot").textContent=t[5];
+
+$("grid").replaceChildren();
+
+groups.forEach((g,i)=>{
+
+let card=document.createElement("article");
+card.className="card";
+
+card.innerHTML=
+'<div class="gift" style="--c:'+g[1]+'"></div>'+
+'<h2>'+t[6][i]+'</h2>'+
+'<button>'+t[2]+'</button>';
+
+card.querySelector("button").onclick=()=>openBox(i);
+
+$("grid").append(card);
+
+});
+
 }
+
+function openBox(i){
+
+$("title").textContent=
+translations[$("lang").value][6][i];
+
+$("rail").replaceChildren();
+
+groups[i][2].forEach(([name,photo])=>{
+
+let item=document.createElement("div");
+item.className="item";
+
+let img=document.createElement("img");
+
+img.src="https://images.unsplash.com/"+photo+
+"?auto=format&fit=crop&w=450&q=80";
+
+img.alt=name;
+
+img.onerror=()=>{
+img.style.display="none";
+};
+
+let label=document.createElement("b");
+label.textContent=name;
+
+item.append(img,label);
+
+$("rail").append(item);
+
+});
+
+$("modal").showModal();
+$("rail").scrollLeft=0;
+
+}
+
+$("close").onclick=()=>$("modal").close();
+
+$("next").onclick=()=>{
+
+let r=$("rail");
+
+r.scrollTo({
+left:r.scrollLeft+r.clientWidth>=r.scrollWidth-5
+?0:r.scrollLeft+225,
+behavior:"smooth"
+});
+
+};
+
+$("lang").onchange=render;
+
+render();
+
 </script>
+
 </body>
 </html>
