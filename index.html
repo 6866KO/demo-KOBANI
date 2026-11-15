@@ -1,178 +1,161 @@
-
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>6866 | Hazel Edition</title>
 <style>
-* {
-box-sizing:border-box;
-}
-body {
-margin:0;
-font-family:Arial,sans-serif;
-background:radial-gradient(ellipse at top,#81734e,#30281f 45%,#171410);
-color:#e7c9a8;
-min-height:100vh;
-text-align:center;
-}
-header {
-padding:25px;
-background:#211c16;
-border-bottom:1px solid #92805a;
-}
-.logo {
-font-family:Georgia,serif;
-font-size:48px;
-letter-spacing:8px;
-color:#e7c9a8;
-}
-.subtitle {
-font-size:12px;
-letter-spacing:5px;
-color:#bda17a;
-}
-nav {
-padding:18px;
-background:#30281f;
-}
-nav a {
-color:#e7c9a8;
-text-decoration:none;
-margin:10px;
-}
-.hero {
-padding:45px 15px;
-}
-.hero h1 {
-font-size:32px;
-font-weight:normal;
-}
-.hero p {
-color:#c5b394;
-}
-.cards {
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:18px;
-max-width:900px;
-margin:auto;
-padding:20px;
-}
-.card {
-background:linear-gradient(145deg,#63563a,#30281f);
-border:1px solid #92805a;
-border-radius:20px;
-padding:25px 12px;
-box-shadow:0 10px 30px #0004;
-transition:0.3s;
-}
-.card:hover {
-transform:translateY(-5px);
-border-color:#e7c9a8;
-}
-.gift {
-font-size:65px;
-padding:15px;
-filter:drop-shadow(0 0 15px #bda17a66);
-}
-button {
-background:linear-gradient(135deg,#e7c9a8,#92805a);
-color:#30281f;
-border:none;
-padding:14px;
-border-radius:12px;
-font-weight:bold;
-font-size:15px;
-cursor:pointer;
-width:100%;
-}
-button:hover {
-filter:brightness(1.15);
-}
-#result {
-padding:25px;
-font-size:20px;
-color:#e7c9a8;
-}
-footer {
-border-top:1px solid #63563a;
-padding:30px;
-color:#bda17a;
-font-size:12px;
-}
-@media(max-width:500px){
-.cards {gap:10px;padding:12px;}
-.card {padding:18px 10px;}
-.gift {font-size:48px;}
-}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#81734e,#30281f 50%,#171410);color:#e7c9a8;font-family:Arial,sans-serif}
+header{background:#211c16;padding:20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #92805a}
+.logo{font:44px Georgia;letter-spacing:7px}
+select{background:#63563a;color:#fff;border:1px solid #92805a;border-radius:9px;padding:10px}
+.hero{text-align:center;padding:45px 15px}
+.hero h1{font-size:34px}
+.cards{max-width:900px;margin:auto;padding:15px;display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.card{background:linear-gradient(145deg,#63563a,#30281f);border:1px solid #92805a;border-radius:18px;text-align:center;padding:22px 10px}
+.emoji{font-size:65px}
+button{background:linear-gradient(135deg,#e7c9a8,#92805a);border:0;border-radius:10px;padding:13px;color:#211c16;font-weight:bold;cursor:pointer}
+.card button{width:100%}
+.viewer{max-width:900px;margin:25px auto;padding:20px;background:#211c16;border:1px solid #92805a;border-radius:18px;text-align:center}
+.viewer[hidden]{display:none}
+.window{overflow:hidden;background:#171410;border-radius:12px;padding:12px 0;position:relative;direction:ltr}
+.window:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:#e7c9a8}
+.track{display:flex;gap:10px;width:max-content}
+.item{flex:none;width:110px;height:120px;background:#63563a;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.item span{font-size:40px}
+.item small{font-size:11px;margin-top:10px}
+footer{text-align:center;padding:30px;color:#bda17a;font-size:12px}
+@media(max-width:500px){.emoji{font-size:48px}.card h2{font-size:17px}.viewer{margin:15px}}
 </style>
 </head>
 <body>
-
 <header>
 <div class="logo">6866</div>
-<div class="subtitle">HAZEL EDITION</div>
+<select id="lang" onchange="changeLanguage()">
+<option value="en">English</option>
+<option value="ku">Kurdî Kurmancî</option>
+<option value="ar">العربية</option>
+<option value="tr">Türkçe</option>
+<option value="de">Deutsch</option>
+<option value="no">Norsk</option>
+<option value="fr">Français</option>
+</select>
 </header>
 
-<nav>
-<a href="#">الرئيسية</a>
-<a href="#gifts">الهدايا المجانية</a>
-</nav>
-
 <section class="hero">
-<h1>أهلاً بك في عالم 6866</h1>
-<p>عالم من الأناقة والهدايا الجميلة</p>
-<span>✦ ───── ✦ ───── ✦</span>
+<h1 id="welcome">Welcome to 6866</h1>
+<p id="intro">Explore our virtual gift collections</p>
+<p>✦ ───── ✦ ───── ✦</p>
 </section>
 
-<div class="cards" id="gifts">
+<div class="cards" id="cards"></div>
 
-<div class="card">
-<div class="gift">🎁</div>
-<h3>Hazel Box</h3>
-<p>الهدية العسلية</p>
-<button onclick="gift('شارة عسلية')">فتح مجاني</button>
+<section class="viewer" id="viewer" hidden>
+<h2 id="boxName"></h2>
+<div class="window" id="window">
+<div class="track" id="track"></div>
 </div>
+<p id="message"></p>
+<button id="spin" onclick="spin()">Spin Preview</button>
+</section>
 
-<div class="card">
-<div class="gift">🌿</div>
-<h3>Olive Box</h3>
-<p>الهدية الزيتونية</p>
-<button onclick="gift('شارة زيتونية')">فتح مجاني</button>
-</div>
-
-<div class="card">
-<div class="gift">💎</div>
-<h3>Diamond Box</h3>
-<p>هدية الألماس</p>
-<button onclick="gift('شارة ألماس')">فتح مجاني</button>
-</div>
-
-<div class="card">
-<div class="gift">👑</div>
-<h3>Royal Box</h3>
-<p>الهدية الملكية</p>
-<button onclick="gift('تاج ملكي')">فتح مجاني</button>
-</div>
-
-</div>
-
-<div id="result" aria-live="polite"></div>
-
-<footer>
-6866 © HAZEL EDITION
-<br><br>
-منصة ترفيهية مجانية - بدون أموال حقيقية
+<footer id="footer">
+Free demo · Virtual items only · No real money or prizes
 </footer>
 
 <script>
-function gift(name){
-document.getElementById("result").textContent =
-"✨ حصلت على "+name+" افتراضية!";
-}
-</script>
+const words={
+en:["Welcome to 6866","Explore our virtual gift collections","Watch Box","Ring Box","Phone Box","TV Box","View Collection","Spin Preview","Preview finished","Free demo · Virtual items only"],
+ku:["Bi xêr hatî 6866","Koleksiyonên diyariyan bibîne","Qutiya saetan","Qutiya gustîlkan","Qutiya telefonan","Qutiya televîzyonan","Koleksiyonê bibîne","Nîşandana zivirandinê","Nîşandan qediya","Ceribandina belaş · Tiştên xeyalî"],ar:["أهلاً بك في 6866","استكشف مجموعات الهدايا الافتراضية","صندوق الساعات","صندوق الخواتم","صندوق الهواتف","صندوق الشاشات","عرض المجموعة","تشغيل الدولاب","انتهى العرض","نسخة مجانية · عناصر افتراضية فقط"],tr:["6866'ya hoş geldiniz","Sanal hediye koleksiyonları","Saat Kutusu","Yüzük Kutusu","Telefon Kutusu","TV Kutusu","Koleksiyonu Gör","Animasyonu Başlat","Gösterim Bitti","Ücretsiz sanal demo"],
+de:["Willkommen bei 6866","Virtuelle Geschenke entdecken","Uhrenbox","Ringbox","Handybox","TV-Box","Ansehen","Animation Starten","Vorschau beendet","Kostenlose virtuelle Demo"],
+no:["Velkommen til 6866","Utforsk virtuelle gaver","Klokkeboks","Ringboks","Mobilboks","TV-boks","Se samlingen","Start animasjon","Visning ferdig","Gratis virtuell demo"],
+fr:["Bienvenue sur 6866","Explorez les cadeaux virtuels","Montres","Bagues","Téléphones","Téléviseurs","Voir la collection","Voir l'animation","Aperçu terminé","Démo virtuelle gratuite"]
+};
 
+const groups=[
+{icon:" ",items:[" "," "," "," "]},
+{icon:" ",items:[" "," "," "," "]},
+{icon:" ",items:[" "," "," "," "]},
+{icon:" ",items:[" "," "," "," "]}
+];
+let selected=-1,busy=false;
+
+function changeLanguage(){
+const lang=document.getElementById("lang").value;
+const w=words[lang];
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+document.getElementById("welcome").textContent=w[0];
+document.getElementById("intro").textContent=w[1];
+document.getElementById("footer").textContent=w[9]+" · No real prizes";
+document.getElementById("spin").textContent=w[7];
+const cards=document.getElementById("cards");
+cards.innerHTML="";
+groups.forEach((g,i)=>{
+const card=document.createElement("div");
+card.className="card";
+const picture=document.createElement("div");
+picture.className="emoji";
+picture.textContent=g.icon;
+const title=document.createElement("h2");
+title.textContent=w[i+2];
+const button=document.createElement("button");
+button.textContent=w[6];
+button.onclick=()=>showBox(i);
+card.append(picture,title,button);
+cards.appendChild(card);
+});
+if(selected>=0)
+document.getElementById("boxName").textContent=w[selected+2];
+}
+
+function showBox(i){
+if(busy)return;
+selected=i;
+const track=document.getElementById("track");
+track.innerHTML="";
+track.style.transition="none";
+track.style.transform="translateX(0)";
+for(let n=0;n<6;n++){
+groups[i].items.forEach(icon=>{
+const item=document.createElement("div");
+item.className="item";
+const symbol=document.createElement("span");
+symbol.textContent=icon;
+const label=document.createElement("small");
+label.textContent="Virtual Item";
+item.append(symbol,label);
+track.appendChild(item);
+});
+}
+document.getElementById("viewer").hidden=false;
+document.getElementById("message").textContent="";
+changeLanguage();
+document.getElementById("viewer").scrollIntoView({behavior:"smooth"});
+}
+
+function spin(){
+if(busy||selected<0)return;
+busy=true;
+const button=document.getElementById("spin");
+const track=document.getElementById("track");
+button.disabled=true;
+track.style.transition="none";
+track.style.transform="translateX(0)";
+void track.offsetWidth;
+const target=track.children[18];
+const offset=target.offsetLeft+55-document.getElementById("window").clientWidth/2;
+track.style.transition="transform 4s cubic-bezier(.12,.75,.15,1)";
+track.style.transform="translateX("+(-offset)+"px)";
+track.addEventListener("transitionend",()=>{
+busy=false;
+button.disabled=false;
+const lang=document.getElementById("lang").value;
+document.getElementById("message").textContent=words[lang][8];
+},{once:true});
+}
+changeLanguage();
+</script>
 </body>
 </html>
