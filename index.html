@@ -3,489 +3,376 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>6866 | Accessories</title>
-
+<title>6866 | Hazel Collections</title>
 <style>
-
 *{box-sizing:border-box}
-
 body{
- margin:0;
- font-family:Arial,sans-serif;
- background:radial-gradient(ellipse at top,#817052,#353c2e,#161c17);
- color:#f8e5bd;
- min-height:100vh;
+margin:0;
+background:radial-gradient(ellipse at top,#887552,#343c2d,#141a15);
+color:#f8e5bd;
+font-family:Arial,sans-serif;
 }
-
 header{
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:25px 5%;
- border-bottom:1px solid #a48d61;
+padding:25px;
+text-align:center;
+border-bottom:1px solid #b99d68;
 }
-
 .logo{
- font:45px Georgia;
- letter-spacing:8px;
+font:65px Georgia;
+letter-spacing:12px;
 }
-
-select{
- padding:12px;
- background:#30382b;
- color:#ffe1a1;
- border:1px solid #ad9364;
- border-radius:12px;
-}
-
-.hero{
- text-align:center;
- padding:45px 20px;
-}
-
-h1{
- font:48px Georgia;
- margin:10px;
-}
-
-.hero p{
- color:#d8c8a7;
- letter-spacing:3px;
-}
-
+.hero{text-align:center;padding:30px}
+h1{font:44px Georgia}
+h2{font:24px Georgia}
 .grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:20px;
- max-width:1400px;
- margin:auto;
- padding:20px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+max-width:1400px;
+margin:auto;
+padding:20px;
 }
-
 .card{
- text-align:center;
- border:1px solid #8f805d;
- background:linear-gradient(145deg,#ffffff12,#00000035);
- border-radius:22px;
- padding:20px;
- overflow:hidden;
- transition:.3s;
+background:#ffffff0c;
+border:1px solid #99835d;
+border-radius:22px;
+overflow:hidden;
+padding:12px;
+text-align:center;
 }
-
 .card:hover{
- transform:translateY(-5px);
- border-color:#ffe2a2;
- box-shadow:0 10px 35px #0005;
+border-color:#ffe1a1;
+transform:translateY(-3px);
 }
-
-.stage{
- height:200px;
- display:flex;
- align-items:center;
- justify-content:center;
- background:radial-gradient(ellipse,#ffffff18,transparent 70%);
- perspective:700px;
+.cover{
+height:220px;
+border-radius:15px;
+overflow:hidden;
+background:#d5c7a7;
 }
-
-.gift{
- width:135px;
- height:115px;
- position:relative;
- border-radius:7px;
- background:linear-gradient(135deg,var(--c),#171b16);
- box-shadow:18px 20px 25px #0008;
- transform:rotate(-5deg) rotateY(-20deg);
+.cover img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
-
-.lid{
- position:absolute;
- top:-12px;
- left:-8px;
- width:151px;
- height:32px;
- border-radius:5px;
- background:linear-gradient(135deg,var(--c),#454238);
- border:1px solid #bca577;
-}
-
-.ribbon{
- position:absolute;
- left:54px;
- top:-12px;
- height:127px;
- width:27px;
- background:linear-gradient(90deg,#91652d,#ffe6a8,#aa7938);
-}
-
-.bow{
- position:absolute;
- top:-38px;
- left:37px;
- font-size:38px;
-}
-
-.number{
- font:28px Georgia;
- position:absolute;
- top:50px;
- left:10px;
- color:#f8e2ae;
-}
-
-h2{
- font:24px Georgia;
- margin:10px 0;
-}
-
-.small{
- color:#c4b99f;
- font-size:13px;
-}
-
 button{
- border:0;
- border-radius:25px;
- background:linear-gradient(120deg,#ffe6ad,#b48b4e);
- color:#29271d;
- font-weight:bold;
- padding:13px 20px;
- cursor:pointer;
+background:linear-gradient(120deg,#ffe5ac,#b78c4b);
+color:#29271c;
+border:0;
+border-radius:25px;
+padding:14px 22px;
+font-weight:bold;
+cursor:pointer;
 }
-
-.card button{
- width:100%;
- margin-top:15px;
-}
-
+.card button{width:100%}
 dialog{
- width:min(1100px,95vw);
- max-height:90vh;
- overflow:auto;
- background:#252e24;
- color:#f8e5bd;
- border:1px solid #b69a65;
- border-radius:24px;
- padding:25px;
+width:min(1100px,95vw);
+max-height:90vh;
+background:#283126;
+color:#f8e5bd;
+border:1px solid #c6aa72;
+border-radius:24px;
+padding:22px;
 }
-
-dialog::backdrop{
- background:#000c;
+dialog::backdrop{background:#000c}
+.top{
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
-
-.modalhead{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:15px;
+.window{
+overflow:hidden;
+background:#161d16;
+border:1px solid #bba16b;
+border-radius:16px;
+padding:15px 0;
+margin:20px 0;
 }
-
-.products{
- display:grid;
- grid-template-columns:repeat(5,1fr);
- gap:12px;
- margin-top:25px;
+.track{
+display:flex;
+width:max-content;
+animation:slide 35s linear infinite;
 }
-
-.product{
- border:1px solid #746a50;
- background:#374034;
- border-radius:14px;
- overflow:hidden;
- text-align:center;
+@keyframes slide{
+to{transform:translateX(-50%)}
 }
-
+.tile{
+width:160px;
+flex-shrink:0;
+background:#394333;
+border:1px solid #8e805f;
+border-radius:12px;
+overflow:hidden;
+text-align:center;
+margin:6px;
+}
 .photo{
- height:140px;
- position:relative;
- background:#e6ddcb;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:55px;
+height:140px;
+background:#e3dac7;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:45px;
 }
-
 .photo img{
- position:absolute;
- inset:0;
- width:100%;
- height:100%;
- object-fit:cover;
+width:100%;
+height:100%;
+object-fit:cover;
 }
-
-.name{
- padding:12px 5px 5px;
- font-size:13px;
+.name{padding:12px 4px}
+.products{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:12px;
 }
-
-.value{
- color:#f5d28b;
- padding:10px;
- font-weight:bold;
+.products .tile{
+width:100%;
+margin:0;
 }
-
 footer{
- text-align:center;
- padding:40px 20px;
- color:#bfb49d;
- font-size:12px;
+text-align:center;
+padding:35px;
+color:#bdb399;
+font-size:12px;
 }
-
-@media(max-width:900px){
- .grid{grid-template-columns:repeat(3,1fr)}
- .products{grid-template-columns:repeat(3,1fr)}
+@media(max-width:700px){
+.grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
+.cover{height:160px}
+.products{grid-template-columns:repeat(2,1fr)}
+h1{font-size:32px}
+h2{font-size:19px}
 }
-
-@media(max-width:600px){
- .grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
- .card{padding:12px}
- .stage{height:160px}
- .gift{scale:.8}
- .products{grid-template-columns:repeat(2,1fr)}
- h1{font-size:35px}
- h2{font-size:19px}
- .photo{height:120px}
- .logo{font-size:32px}
-}
-
 </style>
 </head>
-
 <body>
 
 <header>
-
 <div class="logo">6866</div>
-
-<select id="language">
-<option value="en">English</option>
-<option value="ar">العربية</option>
-<option value="ku">Kurmancî</option>
-<option value="no">Norsk</option>
-</select>
-
+<p>HAZEL EDITION</p>
 </header>
 
 <section class="hero">
-<p>HAZEL EDITION</p>
-<h1 id="heading">Accessories</h1>
-<p id="description">20 SIGNATURE COLLECTIONS</p>
+<h1>Accessories Collections</h1>
+<p>20 signature collections</p>
 </section>
 
 <main class="grid" id="boxes"></main>
 
 <dialog id="modal">
-
-<div class="modalhead">
-<h2 id="boxTitle"></h2>
+<div class="top">
+<h2 id="title"></h2>
 <button id="close">Close</button>
 </div>
 
-<p id="info">20 products · Free preview</p>
+<p>Animated collection preview</p>
 
+<div class="window">
+<div class="track" id="track"></div>
+</div>
+
+<button id="pause">Pause preview</button>
+
+<h2>Collection contents</h2>
 <div class="products" id="products"></div>
-
 </dialog>
 
 <footer>
-6866 — HAZEL EDITION<br><br>
-Free catalog preview · Illustrative values<br>
-No payments, wagering or real prizes.
+6866 HAZEL EDITION
+<p>Free catalog preview. No payments or prizes.</p>
 </footer>
 
 <script>
 
-const boxes=[
+const catalog = [
 
-["Hazel Gold","#8b945e"],
-["Rose Diamond","#bd8597"],
-["Midnight","#41434c"],
-["Emerald","#367b60"],
-["Royal Blue","#385d91"],
-["Champagne","#c4a576"],
-["Ruby","#973f4d"],
-["Silver Moon","#a0a7ae"],
-["Black Pearl","#303039"],
-["Golden Sand","#b39559"],
-["Olive Queen","#67794a"],
-["Pink Crystal","#c892ad"],
-["Ocean","#337c91"],
-["Purple Velvet","#79528c"],
-["White Pearl","#d2c8b5"],
-["Copper","#b36f48"],
-["Forest","#395d43"],
-["Cherry","#963d57"],
-["Royal Gold","#ba9140"],
-["Hazel Signature","#92825d"]
+["Gold Watch","⌚","1524805444758-089113d48a6d"],
+["Crystal Ring","💍","1605100804763-247f67b3557e"],
+["Headphones","🎧","1505740420928-5e560c06d30e"],
+["Smartphone","📱","1511707171634-5f897ff02aa9"],
+["Sunglasses","🕶️","1511499767150-a48a237f0083"],
+["Perfume","🌸","1541643600914-78b084683601"],
+["Silver Watch","⌚","1523275335684-37898b6baf30"],
+["Jewelry Set","💎","1535632066927-ab7c9ab60908"],
+["Handbag","👜","1584917865442-de89df76afd3"],
+["Sneakers","👟","1542291026-7eec264c27ff"],
+["Camera","📷","1516035069371-29a1b244cc32"],
+["Gaming Controller","🎮","1600080972464-8e5f35f63d08"],
+["Keyboard","⌨️","1587829741301-dc798b83add3"],
+["Backpack","🎒","1553062407-98eeb64c6a62"],
+["Classic Shoes","👞","1549298916-b41d501d3772"],
+["Tablet","📱","1544244015-0df4b3ffc6b0"],
+["Speaker","🔊","1608043152269-423dbba4e7e1"],
+["Fashion Jacket","🧥","1551028719-00167b16eac5"],
+["Laptop","💻","1496181133206-80ce9b88a853"],
+["Luxury Pen","🖊️",""],
+
+["Keychain","🔑",""],
+["USB Cable","🔌",""],
+["Hair Clip","🎀",""],
+["Pocket Mirror","🪞",""],
+["Phone Case","📱",""],
+["Bracelet","📿",""],
+["Wallet","👛",""],
+["Comb","🪮",""],
+["Phone Stand","📱",""],
+["LED Light","🔦",""],
+["USB Stick","💾",""],
+["Notebook","📓",""],
+["Pencil","✏️",""],
+["Cotton Socks","🧦",""],
+["Travel Pouch","👝",""],
+["Hair Band","🎀",""],
+["Card Holder","💳",""],
+["Mini Brush","🖌️",""],
+["Screen Cloth","🧽",""],
+["Luggage Tag","🏷️",""],
+["Silk Scarf","🧣",""],
+["Water Bottle","🧴",""],
+["Fashion Belt","👔",""],
+["Small Purse","👛",""],
+["Canvas Bag","🛍️",""],
+["Bookmark","🔖",""],
+["Sticker Pack","⭐",""],
+["Cable Organizer","🔌",""],
+["Phone Grip","📱",""],
+["Mini Organizer","🧰",""]
 
 ];
 
-const products=[
+const collections = [
 
-["Gold Watch",50,"⌚","1524805444758-089113d48a6d"],
-["Crystal Ring",50,"💍","1605100804763-247f67b3557e"],
-["Bracelet",4,"📿","1535632066927-ab7c9ab60908"],
-["Sunglasses",3,"🕶️","1511499767150-a48a237f0083"],
-["Classic Watch",4,"⌚","1523275335684-37898b6baf30"],
-["Earphones",3,"🎧","1505740420928-5e560c06d30e"],
-["Keychain",1,"🔑",""],
-["Phone Case",3,"📱",""],
-["Necklace",4,"📿",""],
-["Pocket Mirror",2,"🪞",""],
-["Earrings",3,"💎",""],
-["Hair Clip",1,"🎀",""],
-["Wallet",4,"👛",""],
-["USB Cable",2,"🔌",""],
-["Phone Stand",2,"📱",""],
-["Fashion Ring",3,"💍",""],
-["Mini Speaker",4,"🔊",""],
-["LED Light",2,"🔦",""],
-["USB Stick",3,"💾",""],
-["Silk Scarf",4,"🧣",""]
+["Golden Time",0,[20,21,24,25,26,28,29,30,36,42]],
+["Diamond Rose",1,[22,23,25,27,34,35,37,40,43,44]],
+["Sound Wave",2,[21,24,28,30,31,34,38,46,47,48]],
+["Mobile Style",3,[20,21,24,28,29,30,34,38,47,48]],
+["Royal Vision",4,[23,26,33,34,36,38,39,40,42,44]],
+["Royal Scent",5,[22,23,27,31,34,35,37,40,43,45]],
+["Silver Moon",6,[20,25,26,29,31,32,36,39,42,45]],
+["Crystal Garden",7,[22,23,25,27,35,37,40,43,44,46]],
+["Elegant Lady",8,[23,26,27,34,35,36,40,43,44,49]],
+["Street Style",9,[20,26,33,34,39,41,42,44,46,49]],
+["Creative Studio",10,[21,29,30,31,32,34,38,39,47,49]],
+["Gaming Style",11,[20,21,24,28,30,31,38,46,47,48]],
+["Digital Desk",12,[21,28,29,30,31,32,38,45,47,49]],
+["Travel Club",13,[20,26,27,33,34,39,41,44,45,49]],
+["Classic Man",14,[20,26,27,33,36,39,40,42,44,45]],
+["Modern Tablet",15,[21,24,28,30,31,32,38,46,47,48]],
+["Music Lounge",16,[20,21,29,30,34,38,41,46,47,49]],
+["Urban Fashion",17,[22,26,33,34,35,36,40,42,43,44]],
+["Office Elite",18,[21,28,30,31,32,36,38,45,47,49]],
+["Hazel Signature",19,[20,23,25,26,31,32,36,40,45,49]]
 
 ];
-
-const translations={
-
-en:[
-"Accessories",
-"20 SIGNATURE COLLECTIONS",
-"Preview contents",
-"20 products · Free preview",
-"Close"
-],
-
-ar:[
-"الإكسسوارات",
-"٢٠ مجموعة مميزة",
-"معاينة المحتويات",
-"٢٠ منتج · معاينة مجانية",
-"إغلاق"
-],
-
-ku:[
-"Aksesûar",
-"20 koleksiyon",
-"Berheman bibîne",
-"20 berhem · Pêşdîtina belaş",
-"Bigire"
-],
-
-no:[
-"Tilbehør",
-"20 SIGNATURKOLLEKSJONER",
-"Vis innhold",
-"20 produkter · Gratis visning",
-"Lukk"
-]
-
-};
 
 const $=id=>document.getElementById(id);
 
-function render(){
+function picture(product){
 
-const t=translations[$("language").value];
+const div=document.createElement("div");
+div.className="photo";
+div.textContent=product[1];
 
-$("heading").textContent=t[0];
-$("description").textContent=t[1];
-$("info").textContent=t[3];
-$("close").textContent=t[4];
+if(product[2]){
 
-$("boxes").replaceChildren();
+const img=document.createElement("img");
 
-boxes.forEach((box,i)=>{
+img.src="https://images.unsplash.com/photo-"+
+product[2]+"?auto=format&fit=crop&w=500&q=80";
+
+img.alt=product[0];
+
+img.onload=()=>{
+div.textContent="";
+div.append(img);
+};
+
+}
+
+return div;
+}
+
+function tile(product){
+
+const el=document.createElement("article");
+el.className="tile";
+
+const label=document.createElement("div");
+label.className="name";
+label.textContent=product[0];
+
+el.append(picture(product),label);
+
+return el;
+
+}
+
+collections.forEach((box,i)=>{
 
 const card=document.createElement("article");
-
 card.className="card";
 
-card.innerHTML=`
-<div class="stage">
- <div class="gift" style="--c:${box[1]}">
-  <div class="lid"></div>
-  <div class="ribbon"></div>
-  <div class="bow">🎀</div>
-  <div class="number">${String(i+1).padStart(2,"0")}</div>
- </div>
-</div>
-<h2>${box[0]}</h2>
-<div class="small">6866 COLLECTION</div>
-<button>${t[2]}</button>
-`;
+const cover=picture(catalog[box[1]]);
+cover.className="photo cover";
 
-card.querySelector("button").onclick=()=>{
- showCollection(i);
-};
+const title=document.createElement("h2");
+title.textContent=box[0];
+
+const description=document.createElement("p");
+description.textContent="11 products";
+
+const button=document.createElement("button");
+button.textContent="View collection";
+button.onclick=()=>showCollection(i);
+
+card.append(cover,title,description,button);
 
 $("boxes").append(card);
 
 });
 
-}
+function showCollection(i){
 
-function showCollection(index){
+const box=collections[i];
 
-$("boxTitle").textContent=boxes[index][0];
+const items=[
+catalog[box[1]],
+...box[2].map(n=>catalog[n])
+];
 
+$("title").textContent=box[0];
+
+$("track").replaceChildren();
 $("products").replaceChildren();
 
-products.forEach(p=>{
-
-const item=document.createElement("article");
-
-item.className="product";
-
-const photo=document.createElement("div");
-
-photo.className="photo";
-
-photo.textContent=p[2];
-
-if(p[3]){
-
-const img=document.createElement("img");
-
-img.src="https://images.unsplash.com/photo-"+p[3]+"?auto=format&fit=crop&w=400&q=80";
-
-img.alt=p[0];
-
-img.onerror=()=>img.remove();
-
-photo.append(img);
-
-}
-
-const name=document.createElement("div");
-
-name.className="name";
-
-name.textContent=p[0];
-
-const value=document.createElement("div");
-
-value.className="value";
-
-value.textContent="$"+p[1].toFixed(2);
-
-item.append(photo,name,value);
-
-$("products").append(item);
-
+items.forEach(p=>{
+$("products").append(tile(p));
 });
 
-$("modal").showModal();
+[...items,...items].forEach(p=>{
+$("track").append(tile(p));
+});
 
-$("modal").scrollTop=0;
+$("track").style.animationPlayState="running";
+$("pause").textContent="Pause preview";
+
+$("modal").showModal();
 
 }
 
 $("close").onclick=()=>$("modal").close();
 
-$("language").onchange=render;
+$("pause").onclick=()=>{
 
-render();
+const track=$("track");
+
+const paused=track.style.animationPlayState==="paused";
+
+track.style.animationPlayState=paused?"running":"paused";
+
+$("pause").textContent=paused?"Pause preview":"Resume preview";
+
+};
 
 </script>
-
 </body>
 </html>
