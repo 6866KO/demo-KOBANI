@@ -2,160 +2,153 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>6866 | Hazel Edition</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#81734e,#30281f 50%,#171410);color:#e7c9a8;font-family:Arial,sans-serif}
-header{background:#211c16;padding:20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #92805a}
-.logo{font:44px Georgia;letter-spacing:7px}
-select{background:#63563a;color:#fff;border:1px solid #92805a;border-radius:9px;padding:10px}
-.hero{text-align:center;padding:45px 15px}
-.hero h1{font-size:34px}
-.cards{max-width:900px;margin:auto;padding:15px;display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.card{background:linear-gradient(145deg,#63563a,#30281f);border:1px solid #92805a;border-radius:18px;text-align:center;padding:22px 10px}
-.emoji{font-size:65px}
-button{background:linear-gradient(135deg,#e7c9a8,#92805a);border:0;border-radius:10px;padding:13px;color:#211c16;font-weight:bold;cursor:pointer}
-.card button{width:100%}
-.viewer{max-width:900px;margin:25px auto;padding:20px;background:#211c16;border:1px solid #92805a;border-radius:18px;text-align:center}
-.viewer[hidden]{display:none}
-.window{overflow:hidden;background:#171410;border-radius:12px;padding:12px 0;position:relative;direction:ltr}
-.window:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:#e7c9a8}
-.track{display:flex;gap:10px;width:max-content}
-.item{flex:none;width:110px;height:120px;background:#63563a;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.item span{font-size:40px}
-.item small{font-size:11px;margin-top:10px}
-footer{text-align:center;padding:30px;color:#bda17a;font-size:12px}
-@media(max-width:500px){.emoji{font-size:48px}.card h2{font-size:17px}.viewer{margin:15px}}
+body{
+margin:0;
+background:radial-gradient(ellipse at top,#93805c,#494333,#211e19);
+color:#f6e6cf;
+font-family:Arial,sans-serif;
+text-align:center;
+min-height:100vh;
+}
+header{padding:35px;border-bottom:1px solid #ad9672}
+.logo{font:55px Georgia;letter-spacing:10px}
+.subtitle{letter-spacing:5px;font-size:12px}
+h1{font-family:Georgia}
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+max-width:850px;
+margin:auto;
+padding:20px;
+}
+.card{
+background:linear-gradient(145deg,#827357,#403a30);
+border:1px solid #bba382;
+border-radius:24px;
+padding:25px 12px;
+}
+svg{width:110px;height:110px}
+button{
+background:linear-gradient(135deg,#f2ddc5,#c7a47c);
+color:#403326;
+border:0;
+border-radius:14px;
+padding:15px 25px;
+font-weight:bold;
+cursor:pointer;
+}
+button:hover{filter:brightness(1.1)}
+#collection{
+max-width:850px;
+margin:25px auto;
+padding:20px;
+}
+.items{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+.item{
+background:#ffffff12;
+border:1px solid #a99476;
+border-radius:18px;
+padding:18px;
+}
+.item svg{width:90px;height:90px}
+footer{padding:30px;font-size:12px}
 </style>
 </head>
 <body>
+
 <header>
 <div class="logo">6866</div>
-<select id="lang" onchange="changeLanguage()">
-<option value="en">English</option>
-<option value="ku">Kurdî Kurmancî</option>
-<option value="ar">العربية</option>
-<option value="tr">Türkçe</option>
-<option value="de">Deutsch</option>
-<option value="no">Norsk</option>
-<option value="fr">Français</option>
-</select>
+<div class="subtitle">HAZEL EDITION</div>
 </header>
 
-<section class="hero">
-<h1 id="welcome">Welcome to 6866</h1>
-<p id="intro">Explore our virtual gift collections</p>
-<p>✦ ───── ✦ ───── ✦</p>
+<h1>Discover Your Collection</h1>
+<p>Luxury meets elegance</p>
+
+<div class="grid" id="boxes"></div>
+
+<section id="collection" hidden>
+<h2 id="name"></h2>
+<div class="items" id="items"></div>
 </section>
 
-<div class="cards" id="cards"></div>
-
-<section class="viewer" id="viewer" hidden>
-<h2 id="boxName"></h2>
-<div class="window" id="window">
-<div class="track" id="track"></div>
-</div>
-<p id="message"></p>
-<button id="spin" onclick="spin()">Spin Preview</button>
-</section>
-
-<footer id="footer">
-Free demo · Virtual items only · No real money or prizes
+<footer>
+Free demo | Virtual collection | No real prizes
 </footer>
 
 <script>
-const words={
-en:["Welcome to 6866","Explore our virtual gift collections","Watch Box","Ring Box","Phone Box","TV Box","View Collection","Spin Preview","Preview finished","Free demo · Virtual items only"],
-ku:["Bi xêr hatî 6866","Koleksiyonên diyariyan bibîne","Qutiya saetan","Qutiya gustîlkan","Qutiya telefonan","Qutiya televîzyonan","Koleksiyonê bibîne","Nîşandana zivirandinê","Nîşandan qediya","Ceribandina belaş · Tiştên xeyalî"],ar:["أهلاً بك في 6866","استكشف مجموعات الهدايا الافتراضية","صندوق الساعات","صندوق الخواتم","صندوق الهواتف","صندوق الشاشات","عرض المجموعة","تشغيل الدولاب","انتهى العرض","نسخة مجانية · عناصر افتراضية فقط"],tr:["6866'ya hoş geldiniz","Sanal hediye koleksiyonları","Saat Kutusu","Yüzük Kutusu","Telefon Kutusu","TV Kutusu","Koleksiyonu Gör","Animasyonu Başlat","Gösterim Bitti","Ücretsiz sanal demo"],
-de:["Willkommen bei 6866","Virtuelle Geschenke entdecken","Uhrenbox","Ringbox","Handybox","TV-Box","Ansehen","Animation Starten","Vorschau beendet","Kostenlose virtuelle Demo"],
-no:["Velkommen til 6866","Utforsk virtuelle gaver","Klokkeboks","Ringboks","Mobilboks","TV-boks","Se samlingen","Start animasjon","Visning ferdig","Gratis virtuell demo"],
-fr:["Bienvenue sur 6866","Explorez les cadeaux virtuels","Montres","Bagues","Téléphones","Téléviseurs","Voir la collection","Voir l'animation","Aperçu terminé","Démo virtuelle gratuite"]
+const pictures = {
+watch:`<svg viewBox="0 0 120 120">
+<rect x="46" y="2" width="28" height="116" rx="9" fill="#c8a56b"/>
+<circle cx="60" cy="60" r="35" fill="#e9cf9a"/>
+<circle cx="60" cy="60" r="29" fill="#38372c"/>
+<path d="M60 38V60L77 70" stroke="#f6e1b0" stroke-width="4" fill="none"/>
+<circle cx="60" cy="60" r="4" fill="gold"/>
+</svg>`,
+
+ring:`<svg viewBox="0 0 120 120">
+<circle cx="60" cy="76" r="29" fill="none" stroke="#dcb77b" stroke-width="12"/>
+<polygon points="30,35 45,15 75,15 90,35 60,66" fill="#e3f5f5"/>
+<path d="M30 35H90M45 15L60 66L75 15" stroke="#8cb9c4" fill="none"/>
+</svg>`,
+
+phone:`<svg viewBox="0 0 120 120">
+<rect x="30" y="4" width="60" height="112" rx="12" fill="#c8b49c"/>
+<rect x="35" y="9" width="50" height="102" rx="9" fill="#626b49"/>
+<circle cx="58" cy="70" r="24" fill="#a7a078"/>
+<circle cx="66" cy="45" r="18" fill="#c5b28d"/>
+<rect x="48" y="13" width="24" height="7" rx="4" fill="#222"/>
+</svg>`,
+
+tv:`<svg viewBox="0 0 120 120">
+<rect x="3" y="17" width="114" height="76" rx="5" fill="#222"/>
+<rect x="8" y="22" width="104" height="66" rx="3" fill="#a4b29a"/>
+<path d="M8 80L40 40L65 65L90 32L112 65V88H8Z" fill="#536747"/>
+<path d="M60 93V105M35 107H85" stroke="#c6b28e" stroke-width="5"/>
+</svg>`
 };
 
 const groups=[
-{icon:"Watch",items:["Gold Watch","Silver Watch","Classic Watch","Bracelet"]},
-{icon:"Ring",items:["Gold Ring","Diamond Ring","Silver Ring","Necklace"]},
-{icon:"Phone",items:["Smartphone","Charger","Headphones","Phone Case"]},
-{icon:"TV",items:["Smart TV","Monitor","Speaker","Remote"]}
+{title:"Watch Box",type:"watch",items:["Golden Watch","Classic Watch","Silver Watch","Sport Watch"]},
+{title:"Ring Box",type:"ring",items:["Diamond Ring","Golden Ring","Silver Ring","Rose Ring"]},
+{title:"Phone Box",type:"phone",items:["Premium Phone","Smartphone","Classic Phone","Mini Phone"]},
+{title:"TV Box",type:"tv",items:["62-inch Smart TV","4K TV","LED TV","Mini Monitor"]}
 ];
-let selected=-1,busy=false;
 
-function changeLanguage(){
-const lang=document.getElementById("lang").value;
-const w=words[lang];
-document.documentElement.lang=lang;
-document.documentElement.dir=lang==="ar"?"rtl":"ltr";
-document.getElementById("welcome").textContent=w[0];
-document.getElementById("intro").textContent=w[1];
-document.getElementById("footer").textContent=w[9]+" · No real prizes";
-document.getElementById("spin").textContent=w[7];
-const cards=document.getElementById("cards");
-cards.innerHTML="";
-groups.forEach((g,i)=>{
-const card=document.createElement("div");
-card.className="card";
-const picture=document.createElement("div");
-picture.className="emoji";
-picture.textContent=g.icon;
-const title=document.createElement("h2");
-title.textContent=w[i+2];
-const button=document.createElement("button");
-button.textContent=w[6];
-button.onclick=()=>showBox(i);
-card.append(picture,title,button);
-cards.appendChild(card);
-});
-if(selected>=0)
-document.getElementById("boxName").textContent=w[selected+2];
-}
+document.getElementById("boxes").innerHTML=
+groups.map((g,i)=>`
+<div class="card">
+${pictures[g.type]}
+<h2>${g.title}</h2>
+<button onclick="showBox(${i})">
+View Collection
+</button>
+</div>
+`).join("");
 
 function showBox(i){
-if(busy)return;
-selected=i;
-const track=document.getElementById("track");
-track.innerHTML="";
-track.style.transition="none";
-track.style.transform="translateX(0)";
-for(let n=0;n<6;n++){
-groups[i].items.forEach(icon=>{
-const item=document.createElement("div");
-item.className="item";
-const symbol=document.createElement("span");
-symbol.textContent=icon;
-const label=document.createElement("small");
-label.textContent="Virtual Item";
-item.append(symbol,label);
-track.appendChild(item);
-});
+const g=groups[i];
+document.getElementById("collection").hidden=false;
+document.getElementById("name").textContent=g.title;
+document.getElementById("items").innerHTML=
+g.items.map(item=>`
+<div class="item">
+${pictures[g.type]}
+<h3>${item}</h3>
+<p>Virtual Item</p>
+</div>
+`).join("");
+document.getElementById("collection")
+.scrollIntoView({behavior:"smooth"});
 }
-document.getElementById("viewer").hidden=false;
-document.getElementById("message").textContent="";
-changeLanguage();
-document.getElementById("viewer").scrollIntoView({behavior:"smooth"});
-}
-
-function spin(){
-if(busy||selected<0)return;
-busy=true;
-const button=document.getElementById("spin");
-const track=document.getElementById("track");
-button.disabled=true;
-track.style.transition="none";
-track.style.transform="translateX(0)";
-void track.offsetWidth;
-const target=track.children[18];
-const offset=target.offsetLeft+55-document.getElementById("window").clientWidth/2;
-track.style.transition="transform 4s cubic-bezier(.12,.75,.15,1)";
-track.style.transform="translateX("+(-offset)+"px)";
-track.addEventListener("transitionend",()=>{
-busy=false;
-button.disabled=false;
-const lang=document.getElementById("lang").value;
-document.getElementById("message").textContent=words[lang][8];
-},{once:true});
-}
-changeLanguage();
 </script>
 </body>
 </html>
