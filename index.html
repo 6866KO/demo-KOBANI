@@ -388,3 +388,227 @@ updateCartCount();
 </script>
 </body>
 </html>
+
+<!-- KOBANI CUSTOMER FEATURES -->
+<style>
+.kb-tools{
+ position:fixed;bottom:18px;left:18px;z-index:9999;
+ display:flex;gap:8px;flex-wrap:wrap
+}
+.kb-tools button{
+ background:#123e35;color:#f1d58a;
+ border:1px solid #d8b76b;border-radius:12px;
+ padding:12px 15px;cursor:pointer;font-weight:bold
+}
+.kb-panel{
+ display:none;position:fixed;inset:0;z-index:10000;
+ background:#0009;align-items:center;justify-content:center;
+ padding:15px;font-family:Arial,sans-serif
+}
+.kb-panel.open{display:flex}
+.kb-box{
+ background:#fff;color:#173e34;border-radius:18px;
+ padding:22px;width:min(100%,480px);
+ max-height:90vh;overflow:auto;direction:rtl
+}
+.kb-box input,.kb-box textarea,.kb-box select{
+ width:100%;padding:12px;margin:7px 0;
+ border:1px solid #ddd;border-radius:9px
+}
+.kb-box button{
+ padding:11px;border:0;border-radius:9px;
+ background:#123e35;color:white;cursor:pointer;margin:5px
+}
+.kb-star{font-size:28px;color:#c49b37;cursor:pointer}
+.kb-review{border-bottom:1px solid #ddd;padding:12px 0}
+</style>
+
+<div class="kb-tools">
+<button onclick="kbOpen('account')">👤 حسابي</button>
+<button onclick="kbOpen('wallet')">💰 محفظتي</button>
+<button onclick="kbOpen('reviews')">⭐ التقييمات</button>
+<button onclick="kbOpen('favorites')">❤️ المفضلة</button>
+</div>
+
+<div class="kb-panel" id="kbPanel"
+ onclick="if(event.target===this)kbClose()">
+<div class="kb-box">
+<button onclick="kbClose()">✕ إغلاق</button>
+<div id="kbContent"></div>
+</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const KEY="kobani_demo_features_v1";
+
+function read(){
+ try{
+  return JSON.parse(localStorage.getItem(KEY))||{};
+ }catch(e){return {}}
+}
+function save(d){
+ try{localStorage.setItem(KEY,JSON.stringify(d))}
+ catch(e){alert("تعذّر الحفظ على الجهاز")}
+}
+function safe(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",
+ '"':"&quot;","'":"&#39;"
+ }[c]));
+}
+function data(){
+ const d=read();
+ if(!Array.isArray(d.reviews))d.reviews=[];
+ if(!Array.isArray(d.favorites))d.favorites=[];
+ return d;
+}
+
+window.kbClose=function(){
+ document.getElementById("kbPanel").classList.remove("open");
+};
+
+window.kbOpen=function(page){
+ const d=data();
+ const box=document.getElementById("kbContent");
+ document.getElementById("kbPanel").classList.add("open");
+
+ if(page==="account"){
+  box.innerHTML=`
+  <h2>👤 الملف الشخصي</h2>
+  <p>هذا ملف تجريبي محفوظ على جهازك فقط.</p>
+  <label>الاسم</label>
+  <input id="kbName" maxlength="70"
+   value="${safe(d.name||"")}" placeholder="اسمك">
+  <label>البلد</label>
+  <select id="kbCountry">
+   <option value="">اختر البلد</option>
+   ${["سوريا","العراق","لبنان","الأردن","السعودية",
+   "الإمارات","الكويت","قطر","البحرين","عُمان",
+   "تركيا","مصر","النرويج","ألمانيا","أخرى"]
+   .map(x=>`<option ${d.country===x?"selected":""}>${x}</option>`).join("")}
+  </select>
+  <button onclick="kbSaveProfile()">حفظ الملف</button>
+  <p style="font-size:12px">
+  تسجيل الدخول الحقيقي وكلمات المرور غير مفعّلين بعد.
+  </p>`;
+ }
+
+ if(page==="wallet"){
+  box.innerHTML=`
+  <h2>💰 محفظة KOBANI</h2>
+  <h1>$0.00</h1>
+  <p>الرصيد التجريبي</p>
+  <p>الإيداع والسحب والدفع غير مفعّلين.</p>
+  <p>المحفظة الحقيقية تحتاج نظام دفع وحماية حسابات.</p>`;
+ }
+
+ if(page==="favorites"){
+  box.innerHTML=`
+  <h2>❤️ المفضلة</h2>
+  <p>أضف اسم المنتج الذي تريد حفظه:</p>
+  <input id="kbFavName" maxlength="120"
+   placeholder="اسم المنتج">
+  <button onclick="kbAddFavorite()">إضافة</button>
+  <div id="kbFavList"></div>`;
+  kbRenderFavorites();
+ }
+
+ if(page==="reviews"){
+  box.innerHTML=`
+  <h2>⭐ تقييمات المنتجات</h2>
+  <p>اكتب اسم المنتج ورأيك فيه:</p>
+  <input id="kbReviewProduct" maxlength="120"
+   placeholder="اسم المنتج">
+  <select id="kbRating">
+   <option value="5">★★★★★ — 5</option>
+   <option value="4">★★★★☆ — 4</option>
+   <option value="3">★★★☆☆ — 3</option>
+   <option value="2">★★☆☆☆ — 2</option>
+   <option value="1">★☆☆☆☆ — 1</option>
+  </select>
+  <textarea id="kbReviewText" maxlength="500"
+   placeholder="اكتب تعليقك"></textarea>
+  <button onclick="kbAddReview()">نشر على هذا الجهاز</button>
+  <div id="kbReviewList"></div>
+  <p style="font-size:12px">
+  التعليقات حالياً لا تظهر للزبائن الآخرين.
+  </p>`;
+  kbRenderReviews();
+ }
+};
+
+window.kbSaveProfile=function(){
+ const d=data();
+ d.name=document.getElementById("kbName").value.trim();
+ d.country=document.getElementById("kbCountry").value;
+ save(d);
+ alert("تم حفظ الملف على هذا الجهاز");
+};
+
+window.kbAddFavorite=function(){
+ const input=document.getElementById("kbFavName");
+ const name=input.value.trim();
+ if(!name)return alert("اكتب اسم المنتج");
+ const d=data();
+ if(!d.favorites.includes(name))d.favorites.push(name);
+ save(d);
+ input.value="";
+ kbRenderFavorites();
+};
+
+window.kbRemoveFavorite=function(i){
+ const d=data();
+ d.favorites.splice(i,1);
+ save(d);
+ kbRenderFavorites();
+};
+
+window.kbRenderFavorites=function(){
+ const d=data();
+ const el=document.getElementById("kbFavList");
+ if(!el)return;
+ el.innerHTML=d.favorites.length
+ ?d.favorites.map((name,i)=>`
+ <div class="kb-review">
+ ${safe(name)}
+ <button onclick="kbRemoveFavorite(${i})">حذف</button>
+ </div>`).join("")
+ :"<p>ما في منتجات بالمفضلة بعد.</p>";
+};
+
+window.kbAddReview=function(){
+ const product=document.getElementById("kbReviewProduct").value.trim();
+ const text=document.getElementById("kbReviewText").value.trim();
+ const rating=Number(document.getElementById("kbRating").value);
+ if(!product||!text)return alert("اكتب المنتج والتعليق");
+ const d=data();
+ d.reviews.unshift({
+  product,text,rating,date:new Date().toLocaleDateString("ar")
+ });
+ save(d);
+ document.getElementById("kbReviewProduct").value="";
+ document.getElementById("kbReviewText").value="";
+ kbRenderReviews();
+};
+
+window.kbRenderReviews=function(){
+ const el=document.getElementById("kbReviewList");
+ if(!el)return;
+ const d=data();
+ el.innerHTML=d.reviews.length
+ ?d.reviews.map(r=>`
+ <div class="kb-review">
+ <strong>${safe(r.product)}</strong>
+ <div style="color:#bd922d">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div>
+ <p>${safe(r.text)}</p>
+ <small>${safe(r.date)}</small>
+ </div>`).join("")
+ :"<p>ما في تقييمات محفوظة بعد.</p>";
+};
+
+})();
+</script>
+<!-- END KOBANI CUSTOMER FEATURES -->
