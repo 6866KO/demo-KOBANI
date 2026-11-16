@@ -610,6 +610,72 @@ footer p{
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
+
+/* KOBANI LUXURY ANIMATED BACKGROUND */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(5, 17, 16, 0.85),
+      rgba(5, 25, 22, 0.30)
+    ),
+    url("./kobani-bg.png") !important;
+
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-color: #071412 !important;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  z-index: 0;
+  pointer-events: none;
+
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    rgba(255, 215, 140, 0.05) 46%,
+    rgba(255, 215, 140, 0.20) 50%,
+    rgba(255, 215, 140, 0.05) 54%,
+    transparent 62%
+  );
+
+  animation: kobaniLuxuryShine 12s linear infinite;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 span {
+  color: #f4c978;
+  text-shadow: 0 0 25px rgba(244, 201, 120, 0.30);
+}
+
+@keyframes kobaniLuxuryShine {
+  from {
+    transform: translateX(-35%);
+  }
+  to {
+    transform: translateX(35%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+  }
+}
+
 </style>
 </head>
 <body>
