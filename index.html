@@ -614,3 +614,160 @@ window.kbRenderReviews=function(){
 <!-- END KOBANI CUSTOMER FEATURES -->
 </body>
 </html>
+<!-- KOBANI SUPABASE AUTH + REVIEWS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  const SUPABASE_URL =
+    "https://qdrvjascsojahmueadln.supabase.co";
+  const SUPABASE_KEY =
+    "sb_publishable_C9Z12pvtocDJXkWi2QMXkw_JX91wWw5";
+
+  const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const escapeText = value =>
+    String(value ?? "").replace(/[&<>"']/g, c => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[c]));
+
+  const panel = document.createElement("div");
+  panel.id = "kobaniRealAccount";
+  panel.style.cssText =
+    "position:fixed;bottom:85px;right:15px;z-index:9999";
+
+  panel.innerHTML =
+    '<button id="kobaniLoginBtn" style="background:#123e35;color:#e6c77d;padding:13px;border:1px solid #e6c77d;border-radius:12px;cursor:pointer">👤 تسجيل الدخول الحقيقي</button>';
+
+  document.body.appendChild(panel);
+
+  const loginButton = document.getElementById("kobaniLoginBtn");
+
+  loginButton.addEventListener("click", async function () {
+    const { data: sessionData } = await db.auth.getUser();
+
+    if (sessionData.user) {
+      const email = sessionData.user.email || "";
+      const logout = confirm(
+        "أنت مسجل دخول:\n" + email +
+        "\n\nاضغط موافق لتسجيل الخروج."
+      );
+
+      if (logout) {
+        await db.auth.signOut();
+        alert("تم تسجيل الخروج");
+      }
+      return;
+    }
+
+    const email = prompt("أدخل بريدك الإلكتروني:");
+    if (!email) return;
+
+    const password = prompt(
+      "أدخل كلمة المرور (6 أحرف على الأقل):"
+    );
+    if (!password) return;
+
+    const isNew = confirm(
+      "هل تريد إنشاء حساب جديد؟\n" +
+      "موافق = حساب جديد\n" +
+      "إلغاء = تسجيل دخول"
+    );
+
+    let result;
+
+    if (isNew) {
+      result = await db.auth.signUp({
+        email: email.trim(),
+        password
+      });
+    } else {
+      result = await db.auth.signInWithPassword({
+        email: email.trim(),
+        password
+      });
+    }
+
+    if (result.error) {
+      alert("خطأ: " + result.error.message);
+    } else {
+      alert(
+        isNew
+          ? "تم إرسال طلب التسجيل. تحقق من بريدك لتأكيد الحساب."
+          : "تم تسجيل الدخول بنجاح"
+      );
+    }
+  });
+
+  window.kobaniSaveRealReview = async function (
+    productId,
+    rating,
+    comment
+  ) {
+    const { data: userData, error: authError } =
+      await db.auth.getUser();
+
+    if (authError || !userData.user) {
+      alert("سجل الدخول أولاً حتى تكتب تقييم.");
+      return false;
+    }
+
+    const cleanProductId = String(productId).trim();
+    const cleanComment = String(comment).trim();
+    const stars = Number(rating);
+
+    if (!cleanProductId || !cleanComment ||
+        !Number.isInteger(stars) ||
+        stars < 1 || stars > 5) {
+      alert("تأكد من اسم المنتج والتعليق والنجوم.");
+      return false;
+    }
+
+    const { error } = await db
+      .from("kobani_reviews")
+      .upsert({
+        product_id: cleanProductId,
+        user_id: userData.user.id,
+        rating: stars,
+        comment: cleanComment
+      }, {
+        onConflict: "product_id,user_id"
+      });
+
+    if (error) {
+      alert("تعذر حفظ التقييم: " + error.message);
+      return false;
+    }
+
+    alert("تم حفظ تقييمك في قاعدة البيانات");
+    return true;
+  };
+
+  window.kobaniLoadRealReviews = async function (productId) {
+    const { data, error } = await db
+      .from("kobani_reviews")
+      .select("rating,comment,created_at")
+      .eq("product_id", String(productId))
+      .order("created_at", { ascending: false })
+      .limit(100);
+
+    if (error) {
+      console.error("KOBANI reviews:", error.message);
+      return [];
+    }
+
+    return data || [];
+  };
+
+  window.kobaniDb = db;
+})();
+</script>
+<!-- END KOBANI SUPABASE -->
