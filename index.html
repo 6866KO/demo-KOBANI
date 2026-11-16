@@ -771,3 +771,108 @@ window.kbRenderReviews=function(){
 })();
 </script>
 <!-- END KOBANI SUPABASE -->
+
+<!-- KOBANI SHARED REVIEWS -->
+<script>
+(function () {
+  "use strict";
+
+  function safeReviewText(value) {
+    return String(value ?? "").replace(/[&<>"']/g, c => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[c]));
+  }
+
+  window.kbAddReview = async function () {
+    const product = document
+      .getElementById("kbReviewProduct")?.value.trim();
+
+    const comment = document
+      .getElementById("kbReviewText")?.value.trim();
+
+    const rating = Number(
+      document.getElementById("kbRating")?.value
+    );
+
+    if (!product || !comment) {
+      alert("اكتب اسم المنتج والتعليق");
+      return;
+    }
+
+    if (typeof window.kobaniSaveRealReview !== "function") {
+      alert("اتصال قاعدة البيانات غير جاهز");
+      return;
+    }
+
+    const saved = await window.kobaniSaveRealReview(
+      product,
+      rating,
+      comment
+    );
+
+    if (saved) {
+      document.getElementById("kbReviewText").value = "";
+      await window.kbRenderReviews();
+    }
+  };
+
+  window.kbRenderReviews = async function () {
+    const list = document.getElementById("kbReviewList");
+    if (!list) return;
+
+    const product = document
+      .getElementById("kbReviewProduct")?.value.trim();
+
+    if (!product) {
+      list.innerHTML =
+        "<p>اكتب اسم المنتج حتى تشوف تقييماته.</p>";
+      return;
+    }
+
+    if (typeof window.kobaniLoadRealReviews !== "function") {
+      list.textContent = "اتصال قاعدة البيانات غير جاهز";
+      return;
+    }
+
+    list.textContent = "جاري تحميل التقييمات...";
+
+    const reviews = await window.kobaniLoadRealReviews(product);
+
+    list.innerHTML = reviews.length
+      ? reviews.map(r => {
+          const stars = Math.max(
+            1,
+            Math.min(5, Number(r.rating) || 1)
+          );
+
+          return `
+            <div class="kb-review">
+              <div style="color:#bd922d">
+                ${"★".repeat(stars)}${"☆".repeat(5 - stars)}
+              </div>
+              <p>${safeReviewText(r.comment)}</p>
+              <small>${safeReviewText(
+                new Date(r.created_at).toLocaleDateString("ar")
+              )}</small>
+            </div>
+          `;
+        }).join("")
+      : "<p>ما في تقييمات لهذا المنتج بعد.</p>";
+  };
+
+  document.addEventListener("input", function (event) {
+    if (event.target?.id === "kbReviewProduct") {
+      clearTimeout(window.kobaniReviewTimer);
+      window.kobaniReviewTimer = setTimeout(
+        () => window.kbRenderReviews(),
+        500
+      );
+    }
+  });
+})();
+</script>
+<!-- END KOBANI SHARED REVIEWS -->
