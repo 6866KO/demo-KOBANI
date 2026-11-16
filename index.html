@@ -680,7 +680,7 @@ footer p{
   }
 }
 
-</style>
+.kx-rewards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:15px 0}.kx-reward-row{border:1px solid rgba(230,188,112,.35);border-radius:8px;padding:8px;display:flex;justify-content:space-between;gap:5px;font-size:12px}.kx-reward-row span:first-child{color:#e6bc70;font-weight:700}</style>
 <style>
 .kx-info{margin-top:48px}.kx-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.kx-tiles button{background:linear-gradient(145deg,#102724,#0b1918);border:1px solid rgba(230,188,112,.4);border-radius:16px;padding:24px 12px;color:#f7f0e5;cursor:pointer;display:flex;flex-direction:column;gap:10px;align-items:center;min-height:164px}.kx-tiles button span{font-size:34px}.kx-tiles button strong{font-size:17px;color:#e6bc70}.kx-tiles button small{font-size:12px;color:#c0c8c2}.kx-panel{line-height:1.85;color:#e9e6dd}.kx-panel p{margin:12px 0}.kx-panel label{display:block;margin-top:14px}.kx-panel select,.kx-panel input{width:100%;padding:12px;background:#112521;color:#fff;border:1px solid #ae8a4e;border-radius:9px;margin:7px 0 15px}.kx-panel button{margin:10px 0}.kx-small{font-size:12px;color:#c4c4bd}.kx-wheel{width:min(275px,75vw);height:min(275px,75vw);margin:15px auto 24px;border:11px solid #e6bc70;border-radius:50%;background:conic-gradient(#f2c879 0 60deg,#133c34 60deg 120deg,#c99640 120deg 180deg,#163e38 180deg 240deg,#f2c879 240deg 300deg,#133c34 300deg 360deg);box-shadow:0 0 0 5px #503b1e,0 0 30px rgba(230,188,112,.4);display:grid;place-items:center;transition:transform 3.8s cubic-bezier(.14,.75,.15,1)}.kx-wheel-center{background:#061914;color:#e6bc70;border:4px solid #e6bc70;border-radius:50%;width:68px;height:68px;display:grid;place-items:center;font-size:40px}@media(max-width:720px){.kx-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.kx-tiles button{min-height:148px;padding:16px 8px}}
 </style>
@@ -1782,12 +1782,12 @@ catalogEntries.forEach(([name,cat,price,icon],i)=>{
 /* Replace generic emoji cards with illustrative category photos.
    Exact product photos must come from verified supplier listings. */
 products.forEach(p=>{
- if(p.id>=catalogStart) p.image=kobaniCategoryPhoto(p.cat);
+ if(p.id>=catalogStart) p.image=productTileImage(p.en, (catalogEntries[p.id-catalogStart]||[])[3]||'📦');
 });
 const _renderProducts=renderProducts;
 renderProducts=function(){_renderProducts();};
 function showShipping(){
- openModal(extraText('Shipping & delivery'),`<div class="kx-panel"><p>${safe(extraText('Shipping is calculated after a supplier and carrier are connected.'))}</p><label>${safe(extraText('Destination country'))}</label><select id="kx-country"><option value="">${safe(extraText('Select a country'))}</option>${['Norway','Sweden','Germany','France','United Kingdom','United States','Canada','Türkiye','Iraq','China','Australia','Netherlands','Spain','Italy','Saudi Arabia','United Arab Emirates'].map(x=>`<option>${x}</option>`).join('')}</select><button class="gold-btn" onclick="shippingEstimate()">${safe(extraText('Check shipping'))}</button><div id="kx-shipping-result" class="notice">${safe(extraText('No live shipping rates are available yet.'))}</div></div>`);
+ openModal(extraText('Shipping & delivery'),`<div class="kx-panel"><p>${safe(extraText('Shipping is calculated after a supplier and carrier are connected.'))}</p><label>${safe(extraText('Destination country'))}</label><select id="kx-country"><option value="">${safe(extraText('Select a country'))}</option>${['Norway','Sweden','Germany','France','United Kingdom','United States','Canada','Türkiye','Syria','Iraq','China','Australia','Netherlands','Spain','Italy','Saudi Arabia','United Arab Emirates'].map(x=>`<option>${x}</option>`).join('')}</select><button class="gold-btn" onclick="shippingEstimate()">${safe(extraText('Check shipping'))}</button><div id="kx-shipping-result" class="notice">${safe(extraText('No live shipping rates are available yet.'))}</div></div>`);
 }
 function shippingEstimate(){
  const country=document.getElementById('kx-country').value;
@@ -1795,22 +1795,55 @@ function shippingEstimate(){
 }
 function showAbout(){openModal(extraText('About KOBANI'),`<div class="kx-panel"><h3>♛ KOBANI — Discover more, spend wisely</h3><p>${safe(extraText('KOBANI brings everyday essentials together — from phone cases and kitchen tools to home, garage and car accessories. Our goal is to make browsing simple, multilingual and transparent.'))}</p><p>${safe(extraText('We are preparing a dropshipping marketplace. Products are examples until verified suppliers, payments and shipping are connected.'))}</p></div>`);}
 let spinRunning=false;
+const WHEEL_REWARDS=[
+ {percent:5,min:5,weight:350},
+ {percent:10,min:10,weight:300},
+ {percent:20,min:15,weight:200},
+ {percent:30,min:25,weight:80},
+ {percent:40,min:35,weight:40},
+ {percent:50,min:40,weight:20},
+ {percent:60,min:45,weight:9},
+ {percent:70,min:50,weight:1}
+];
+const WHEEL_CAP=15;
+function wheelText(en,ar,ku,tr,zh){
+ return ({ar,ku,tr,zh})[language]||en;
+}
+function wheelDay(){return new Date().toLocaleDateString('en-CA');}
 function showWheel(){
- openModal(extraText('Golden wheel'),`<div class="kx-panel" style="text-align:center"><div class="kx-wheel" id="kx-wheel"><div class="kx-wheel-center">♛</div></div><p id="kx-wheel-result">${safe(extraText('Try the golden wheel for a demo surprise!'))}</p><button class="gold-btn" id="kx-spin" onclick="spinWheel()">${safe(extraText('Spin the wheel'))}</button><p class="kx-small">${safe(extraText('Demo only. No real discounts, cash prizes or rewards are issued.'))}</p></div>`);
+ const previous=localStorage.getItem('kobani_spin_date')===wheelDay();
+ const title=wheelText('Golden wheel','عجلة الحظ الذهبية','Çerxa zêrîn','Altın çark','幸运金轮');
+ const rule=wheelText('One free demo spin per day. Discounts require a minimum cart amount. Maximum saving: $15. Demo rewards cannot be redeemed.',
+ 'محاولة تجريبية مجانية يومياً. لكل خصم حد أدنى للطلب. أقصى توفير 15 دولاراً. الجوائز غير قابلة للاستخدام حالياً.',
+ 'Her roj ceribandineke belaş. Ji bo her daxistinê sînorê herî kêm heye. Herî zêde $15. Tenê nimûne ye.',
+ 'Günde bir ücretsiz deneme. İndirimler için minimum sepet tutarı gerekir. En fazla $15 tasarruf. Ödüller şu an kullanılamaz.',
+ '每天一次免费体验。优惠需达到最低订单金额，最高优惠15美元。演示奖励不可兑换。');
+ const labels=WHEEL_REWARDS.map(x=>`<div class="kx-reward-row"><span>${x.percent}%</span><span>${wheelText('Minimum order','أقل طلب','Siparîşa herî kêm','Minimum sipariş','最低订单')} $${x.min}</span></div>`).join('');
+ openModal(title,`<div class="kx-panel" style="text-align:center"><div class="kx-wheel" id="kx-wheel"><div class="kx-wheel-center">♛</div></div><p class="kx-small">${safe(rule)}</p><div class="kx-rewards">${labels}</div><p id="kx-wheel-result" aria-live="polite">${previous?safe(wheelText('Come back tomorrow for your next spin','ارجع بكرا للمحاولة الجديدة','Sibe vegere','Yarın tekrar gel','明天再来')):safe(wheelText('Spin for a demo discount!','لف العجلة لخصم تجريبي!','Ji bo daxistinê bizivirîne!','Deneme indirimi için çevir!','转动抽取演示折扣！'))}</p><button class="gold-btn" id="kx-spin" onclick="spinWheel()" ${previous?'disabled':''}>${safe(wheelText('Spin the wheel','لف العجلة','Çerxê bizivirîne','Çarkı çevir','转动转盘'))}</button></div>`);
 }
 function spinWheel(){
  if(spinRunning)return;
- const today=new Date().toISOString().slice(0,10);
- if(localStorage.getItem('kobani_spin_date')===today){document.getElementById('kx-wheel-result').textContent=extraText('One demo spin per day. Come back tomorrow!');return;}
+ const today=wheelDay();
+ const result=document.getElementById('kx-wheel-result');
+ if(!result)return;
+ if(localStorage.getItem('kobani_spin_date')===today){result.textContent=wheelText('One spin per day. Come back tomorrow!','محاولة واحدة باليوم، ارجع بكرا!','Her roj carekê, sibe vegere!','Günde bir kez, yarın gel!','每天仅一次，请明天再来！');return;}
  spinRunning=true;
- const choices=['5%','10%','15%','20%','Try again','Free shipping'];
- const index=Math.floor(Math.random()*choices.length);
+ const random=new Uint32Array(1);
+ if(window.crypto&&crypto.getRandomValues)crypto.getRandomValues(random);else random[0]=Math.floor(Math.random()*4294967296);
+ let roll=random[0]%1000;
+ const reward=WHEEL_REWARDS.find(r=>{roll-=r.weight;return roll<0;})||WHEEL_REWARDS[0];
  const wheel=document.getElementById('kx-wheel');
- wheel.style.transform='rotate('+(1800+index*60)+'deg)';
+ if(wheel)wheel.style.transform='rotate('+(1800+Math.floor(Math.random()*360))+'deg)';
  document.getElementById('kx-spin').disabled=true;
+ localStorage.setItem('kobani_spin_date',today);
+ localStorage.setItem('kobani_demo_reward',JSON.stringify({...reward,date:today,cap:WHEEL_CAP}));
  setTimeout(()=>{
-  localStorage.setItem('kobani_spin_date',today);
-  document.getElementById('kx-wheel-result').textContent=extraText('Your demo result')+': '+choices[index]+'. '+extraText('Not redeemable until a real promotion is launched.');
+  result.textContent=wheelText(
+   `You got ${reward.percent}% OFF! Minimum order $${reward.min}. Maximum saving $${WHEEL_CAP}. Demo only — not redeemable.`,
+   `ربحت خصم ${reward.percent}%! أقل طلب $${reward.min}، وأقصى توفير $${WHEEL_CAP}. جائزة تجريبية غير قابلة للاستخدام.`,
+   `Te ${reward.percent}% daxistin qezenc kir! Siparîşa herî kêm $${reward.min}. Herî zêde $${WHEEL_CAP}. Tenê nimûne ye.`,
+   `%${reward.percent} indirim kazandın! Minimum sipariş $${reward.min}, en fazla $${WHEEL_CAP}. Sadece demo.`,
+   `获得${reward.percent}%折扣！最低订单$${reward.min}，最高优惠$${WHEEL_CAP}。仅供演示。`);
   spinRunning=false;
  },3900);
 }
